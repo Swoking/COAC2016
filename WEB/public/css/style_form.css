@@ -1,0 +1,28 @@
+.image_modif {
+    float: left;
+}
+
+.form_modif {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+div {
+    display: inline-block;
+}
+
+.pdf_classe {
+    position: fixed; 
+    right: 15em;
+    top: 25%;
+    margin-top: auto; 
+    list-style-type : none;
+    list-style:none;
+    top :5em;
+    display: inline-block;
+}
+
+.image_iden {
+    width: 200px;
+    height : 256px;
+}
