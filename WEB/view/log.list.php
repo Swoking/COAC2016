@@ -14,7 +14,7 @@ use Coac\Table\Html;
         <select name='idEleve'>
             <option value='Tous'><?= 'Tous' ?></option>";
 
-            <?php if ( !isset($_GET['idClasse']) | $_GET['idClasse'] == 'Tous' ) : ?> 
+            <?php if ( !isset($_GET['idClasse']) | $_GET['idClasse'] == 'Tous' | $_GET['idClasse'] == NULL) : ?> 
                 <?php foreach (Log::select() as $data) : ?>
                  <option value='<?= $data->id ?>'><?= $data->Nom ?> <?= $data->Prenom ?></option>";
                 <?php endforeach; ?>
@@ -27,6 +27,9 @@ use Coac\Table\Html;
 
             <?php endif; ?>
             </select>
+
+            <input type="hidden" name="idClasse" value="<?= NULL ?>" >
+
         <input type="Submit" value="Selectionner">
     </form>
 
@@ -40,6 +43,10 @@ use Coac\Table\Html;
                 <option value='<?= $data->id_Promo ?>'><?= $data->Nom_Promo ?></option>";
                 <?php endforeach; ?>
             </select>
+
+            <input type="hidden" name="idEleve" value="<?= NULL ?>" >
+
+
         <input type="Submit" value="Selectionner">
     </form>
             
@@ -55,6 +62,12 @@ use Coac\Table\Html;
                 <td>Evénement</td>
             </tr>
         </thead>
+
+<?php
+        var_dump($_GET['idEleve']);
+        var_dump($_GET['idClasse']);
+?>
+
         <tbody>
 
             <?php if ( !isset($_GET['idEleve']) & !isset($_GET['idClasse']) | $_GET['idEleve'] == 'Tous' | $_GET['idClasse'] == 'Tous') : ?> 
