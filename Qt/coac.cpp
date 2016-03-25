@@ -3,12 +3,19 @@
 #include <QTimer>
 #include <QCameraImageCapture>
 #include <QStandardItemModel>
+#include <QToolButton>
 
 COAC::COAC( QWidget *parent ) :
     QMainWindow(parent),
     mode(Ajout)
 {
     setupUi(this);
+
+    QToolButton *tbEleveList = new QToolButton;
+    tbEleveList->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr(""), tbEleveList));
+    tbEleveList->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    mainToolBar->addWidget(tbEleveList);
+    mainToolBar->setEnabled(true);
 
     camera = new Camera();
     elevelist = new EleveList(this);

@@ -33,3 +33,6 @@ HEADERS  += \
 
 FORMS    += coac.ui \
             elevelist.ui
+
+RESOURCES += \
+    ressource.qrc
