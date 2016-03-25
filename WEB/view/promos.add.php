@@ -1,5 +1,7 @@
 <?php
 use Coac\Table\Promos;
+use \Coac\Table\Log;
+
 
 if ( !empty($_POST) ) {
     var_dump($_POST);

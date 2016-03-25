@@ -1,5 +1,7 @@
 <?php
 use \Coac\Table\Eleve;
+use \Coac\Table\Log;
+
 
 $find = false; // controle si un élève est trouvé
 $eleve = NULL;

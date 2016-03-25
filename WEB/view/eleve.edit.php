@@ -3,6 +3,8 @@ use \Coac\Table\Promos;
 use \Coac\Table\Lycee;
 use \Coac\Table\Eleve;
 use \Coac\Table\Carte;
+use \Coac\Table\Log;
+
 
 
 

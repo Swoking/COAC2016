@@ -1,5 +1,7 @@
 <?php
 use \Coac\Table\Promos;
+use \Coac\Table\Log;
+
 
 if ( isset($_GET['id']) | isset($_POST['id']) ) {
 

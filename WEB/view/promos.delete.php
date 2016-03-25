@@ -1,5 +1,7 @@
 <?php
 use \Coac\Table\Promos;
+use \Coac\Table\Log;
+
 
 $find = false; // controle si une classe est trouvée
 $promos = NULL;
