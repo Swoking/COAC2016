@@ -27,6 +27,7 @@ COAC::COAC( QWidget *parent ) :
 
 void COAC::onPushActionEleve(bool i){
     Q_UNUSED(i)
+    elevelist = new EleveList(this);
     elevelist->show();
 }
 
