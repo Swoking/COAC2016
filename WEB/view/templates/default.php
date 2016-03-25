@@ -32,11 +32,11 @@
             <menu id="menu">
                 <li><a href="#"><img src="img/exit.png" align="top" width="30px" height="30px" title="Se déconnecter"></a></li>
                 <li><p></p></li>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Inscription</a></li>
-                <li><a href="#">Liste des élèves</a></li>
-                <li><a href="#">Modifier une classe</a></li>
-                <li><a href="#">Liste des logs</a></li>
+                <li><a href="?p=home">Accueil</a></li>
+                <li><a href="?p=eleve.add">Inscription</a></li>
+                <li><a href="?p=eleve.list">Liste des élèves</a></li>
+                <li><a href="?p=promo.list">Liste des classes</a></li>
+                <li><a href="?p=log.list">Liste des logs</a></li>
             </menu>
             <!-- /MENU -->
         </center>
