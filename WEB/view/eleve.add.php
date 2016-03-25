@@ -2,6 +2,8 @@
 use \Coac\Table\Promos;
 use \Coac\Table\Eleve;
 use \Coac\Table\Lycee;
+use \Coac\Table\Log;
+
 
 
 if ( !empty($_POST) ) {
@@ -10,6 +12,8 @@ if ( !empty($_POST) ) {
      $_POST['email'], $_POST['sexe'], $_POST['date_naiss']);
 
     Carte::add($_POST['num_carte'], $_POST['etat']); //marche pas, fatal error requete du dessus
+
+    Log::eleve_add($_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['num_carte']);
 }
 
 ?>

@@ -4,6 +4,8 @@ use Coac\Table\Promos;
 if ( !empty($_POST) ) {
     var_dump($_POST);
     Promos::add( $_POST['entree'], $_POST['sortie'], $_POST['name'], $_POST['filiere'] );
+
+    Log::promos_add($_POST['name']);
 }
 ?>
 <center>

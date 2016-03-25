@@ -22,6 +22,8 @@ if (isset($_POST['id'])) $id = $_POST['id'];
                     $_POST['email'], $_POST['sexe'], $_POST['date_naiss']);
 
         Carte::edit($_POST['id'], $_POST['num_carte'], $_POST['etat']);
+
+        Log::eleve_edit($_POST['id'], $_POST['num_carte']);
     }
 
     $eleve = Eleve::getFromId($_GET['id']);

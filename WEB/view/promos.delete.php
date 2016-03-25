@@ -10,6 +10,8 @@ foreach( Promos::getAll() as $data ) {
         $promos = $data; // copie de la classe dans une variable
         
         Promos::delete( $data->id );// supression de la classe
+        Log::promos_add( $data->id );
+
         break;
     }
 }

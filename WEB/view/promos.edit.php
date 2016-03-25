@@ -9,11 +9,9 @@ if (isset($_POST['id'])) $id = $_POST['id'];
     if ( !empty($_POST) ) {
         var_dump($_POST);
 
-
-
-
-
         Promos::edit($_POST['id'], $_POST['entree'], $_POST['sortie'], $_POST['name'], $_POST['filiere']);
+
+        Log::promos_edit($_POST['name']);
     }
 
     $classe = Promos::getFromId($_GET['id']);
