@@ -21,6 +21,7 @@ COAC::COAC( QWidget *parent ) :
 
     connect(pbuEnvoyer, SIGNAL(clicked(bool)), this, SLOT(Envoyer(bool)));
     connect(pbuTakeImage, SIGNAL(clicked(bool)), this, SLOT(imageCapture(bool)));
+    stackedWidget->setCurrentIndex(0);
     showCamera();
 }
 
@@ -39,21 +40,50 @@ void COAC::printPromos() {
 }
 
 void COAC::printDateNaissance() {
-    for( int i = 1; i <= 31; i++) {
-        cmbJour->addItem( QString::number(i), QVariant(i) );
-    }
-    cmbMoi->addItem( QString("Janvier"),   QVariant(1) );
-    cmbMoi->addItem( QString("Février"),   QVariant(2) );
-    cmbMoi->addItem( QString("Mars"),      QVariant(3) );
-    cmbMoi->addItem( QString("Avril"),     QVariant(4) );
-    cmbMoi->addItem( QString("Mai"),       QVariant(5) );
-    cmbMoi->addItem( QString("Juin"),      QVariant(6) );
-    cmbMoi->addItem( QString("Juillet"),   QVariant(7) );
-    cmbMoi->addItem( QString("Aoùt"),      QVariant(8) );
-    cmbMoi->addItem( QString("Septembre"), QVariant(9) );
-    cmbMoi->addItem( QString("Octobre"),   QVariant(10) );
-    cmbMoi->addItem( QString("Novembre"),  QVariant(11) );
-    cmbMoi->addItem( QString("Décembre"),  QVariant(12) );
+    cmbJour->addItem( QString::number(1), QVariant("01") );
+    cmbJour->addItem( QString::number(2), QVariant("02") );
+    cmbJour->addItem( QString::number(3), QVariant("03") );
+    cmbJour->addItem( QString::number(4), QVariant("04") );
+    cmbJour->addItem( QString::number(5), QVariant("05") );
+    cmbJour->addItem( QString::number(6), QVariant("06") );
+    cmbJour->addItem( QString::number(7), QVariant("07") );
+    cmbJour->addItem( QString::number(8), QVariant("08") );
+    cmbJour->addItem( QString::number(9), QVariant("09") );
+    cmbJour->addItem( QString::number(10), QVariant("10") );
+    cmbJour->addItem( QString::number(11), QVariant("11") );
+    cmbJour->addItem( QString::number(12), QVariant("12") );
+    cmbJour->addItem( QString::number(13), QVariant("13") );
+    cmbJour->addItem( QString::number(14), QVariant("14") );
+    cmbJour->addItem( QString::number(15), QVariant("15") );
+    cmbJour->addItem( QString::number(16), QVariant("16") );
+    cmbJour->addItem( QString::number(17), QVariant("17") );
+    cmbJour->addItem( QString::number(18), QVariant("18") );
+    cmbJour->addItem( QString::number(19), QVariant("19") );
+    cmbJour->addItem( QString::number(20), QVariant("20") );
+    cmbJour->addItem( QString::number(21), QVariant("21") );
+    cmbJour->addItem( QString::number(22), QVariant("22") );
+    cmbJour->addItem( QString::number(23), QVariant("23") );
+    cmbJour->addItem( QString::number(24), QVariant("24") );
+    cmbJour->addItem( QString::number(25), QVariant("25") );
+    cmbJour->addItem( QString::number(26), QVariant("26") );
+    cmbJour->addItem( QString::number(27), QVariant("27") );
+    cmbJour->addItem( QString::number(28), QVariant("28") );
+    cmbJour->addItem( QString::number(29), QVariant("29") );
+    cmbJour->addItem( QString::number(30), QVariant("30") );
+    cmbJour->addItem( QString::number(31), QVariant("31") );
+
+    cmbMoi->addItem( QString("Janvier"),   QVariant("01") );
+    cmbMoi->addItem( QString("Février"),   QVariant("02") );
+    cmbMoi->addItem( QString("Mars"),      QVariant("03") );
+    cmbMoi->addItem( QString("Avril"),     QVariant("04") );
+    cmbMoi->addItem( QString("Mai"),       QVariant("05") );
+    cmbMoi->addItem( QString("Juin"),      QVariant("06") );
+    cmbMoi->addItem( QString("Juillet"),   QVariant("07") );
+    cmbMoi->addItem( QString("Aoùt"),      QVariant("08") );
+    cmbMoi->addItem( QString("Septembre"), QVariant("09") );
+    cmbMoi->addItem( QString("Octobre"),   QVariant("10") );
+    cmbMoi->addItem( QString("Novembre"),  QVariant("11") );
+    cmbMoi->addItem( QString("Décembre"),  QVariant("12") );
     for( int i = QDateTime::currentDateTime().date().year(); i >= 1900; i--) {
         cmbAnnee->addItem( QString::number(i), QVariant(i) );
     }
@@ -109,19 +139,28 @@ void COAC::Envoyer(bool c) {
             qDebug() << "COAC::Envoyer() > " << "Sql query:" << query.lastQuery();
         } else {
             setEleveInfo();
-//------------
-            query.prepare("UPDATE Etudiant (Nom, Prenom, id_Promo, Adresse, Ville, CP, email, Sexe, Date_Naissance, id_Lycee ) "
-                          "VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?);");
+            query.prepare("UPDATE Etudiant SET  Nom = ? ,"
+                                               "Prenom = ? ,"
+                                               "id_Promo = ? ,"
+                                               "id_Lycee = ? ,"
+                                               "Adresse = ? ,"
+                                               "Ville = ? ,"
+                                               "CP = ? ,"
+                                               "Email = ? ,"
+                                               "Sexe = ? ,"
+                                               "Date_Naissance = ?"
+                          "WHERE id = ? ");
             query.addBindValue(nom);
             query.addBindValue(prenom);
             query.addBindValue(idPromo);
+            query.addBindValue(1);
             query.addBindValue(adresse);
             query.addBindValue(ville);
             query.addBindValue(cp);
             query.addBindValue(mail);
             query.addBindValue(sex);
             query.addBindValue(date);
-            query.addBindValue(1);
+            query.addBindValue(id);
             query.exec();
             qDebug() << "COAC::Envoyer() > " << "Sql error:" << query.lastError().text() << ", Sql error code:" << query.lastError().number();
         }
@@ -195,11 +234,22 @@ qDebug() << query.value(1).toString();
             id = query.value(0).toInt();
             ledtNom->setText( query.value(1).toString() );
             ledtPrenom->setText( query.value(2).toString() );
-            int test = cmbPromos->findData( query.value(3).toInt() );
-            cmbPromos->setCurrentIndex( test );
-            ledtAddr->setText( query.value(4).toString() );
-            ledtCP->setText( query.value(4).toString() );
-            ledtMail->setText( query.value(5).toString() );
+            int tempIdProm1o = cmbPromos->findData( query.value(3).toInt() );
+            cmbPromos->setCurrentIndex( tempIdProm1o );
+            ledtAddr->setText( query.value(5).toString() );
+            ledtVille->setText( query.value(6).toString() );
+            ledtCP->setText( query.value(7).toString() );
+            ledtMail->setText( query.value(8).toString() );
+            if(query.value(9).toString() == "Masculin") {   rdbHomme->setChecked(true); }
+            else {                                          rdbFemme->setChecked(true); }
+            QStringList piecesDate = query.value(10).toString().split("-");
+            int tempDateYear    = cmbAnnee->findData( piecesDate.value( query.value(10).toString().split("-").length() - 3 ) );
+            int tempDateMonth   = cmbMoi->findData( piecesDate.value( query.value(10).toString().split("-").length() - 2 ) );
+            int tempDateDay     = cmbJour->findData( piecesDate.value( query.value(10).toString().split("-").length() - 1 ) );
+            cmbAnnee->setCurrentIndex(tempDateYear);
+            cmbMoi->setCurrentIndex(tempDateMonth);
+            cmbJour->setCurrentIndex(tempDateDay);
+
 
         }
 
