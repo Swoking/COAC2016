@@ -51,6 +51,8 @@ use Coac\Table\Html;
                 <td>Prenom</td>
                 <td>Classe</td>
                 <td>Date</td>
+                <td>Numero de carte</td>
+                <td>Evénement</td>
             </tr>
         </thead>
         <tbody>
@@ -65,11 +67,20 @@ use Coac\Table\Html;
 
                 <?php foreach($logs as $data): ?>
                     <tr>
-                        <td><?= $data->Nom ?></td>
+                        <td><?= $data->Nom_Etudiant ?></td>
                         <td><?= $data->Prenom ?></td>
-                        <td><?= $data->Classe ?></td>
+                        <td><?= $data->Nom_Promo ?></td>
                         <td><?= $data->Date ?></td>
+
+<?php                   if(!isset($data->Num_Carte)){
+?>                          <td><?= '' ?></td>
+
+<?php                   } else {
+?> 
                         <td><?= $data->Num_Carte ?></td>
+<?php                   }
+?>
+                        <td><?= $data->Evenement ?></td>
                         
                     </tr>
                 <?php endforeach; ?>
