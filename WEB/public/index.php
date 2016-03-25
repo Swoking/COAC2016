@@ -44,7 +44,7 @@ if ( $p === 'home' ) {
 } else if ( $p === 'promos.add')	{ require '../view/promos.add.php';
 
 } else if ( $p === 'carte.list')	{ require '../view/carte.list.php';
-} else if ( $p === 'carte.delete')	{ require '../view/carte.delete.php';
+} else if ( $p === 'carte.statut')	{ require '../view/carte.statut.php';
 } else if ( $p === 'carte.add')		{ require '../view/carte.add.php';
 } else if ( $p === 'carte.view')	{ require '../view/carte.view.php';
 

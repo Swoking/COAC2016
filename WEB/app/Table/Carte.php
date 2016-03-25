@@ -66,14 +66,14 @@ class Carte
         $db = new \Coac\Database('COAC2016');
 		$name = $db->query("SELECT Nom,Prenom,id FROM Etudiant WHERE id = " . $id, '\Coac\Table\Eleve');
         $html = "<a href='?p=carte.delete&id=" . $idCarte . "' ";
-        $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name[0]->Nom . " " . $name[0]->Prenom/* . $liste->Nom $liste->prenom*/ . "'));\">";
+        $html .= "onclick=\"return(confirm('Confirmer la désactivation de la carte de :\\n\\n" . $name[0]->Nom . " " . $name[0]->Prenom/* . $liste->Nom $liste->prenom*/ . "'));\">";
         $html .= "<img src='img/supprime.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
         return $html .= "</a>";
     }
 
     public static function delete($id){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("DELETE FROM Carte WHERE id = $id", 'Coac\Table\Promos');
+        return $db->query("UPDATE Carte SET Etat = 'Perdu' WHERE id = $id", 'Coac\Table\Promos');
     }
 
 }
