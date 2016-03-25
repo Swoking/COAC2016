@@ -20,7 +20,7 @@ $req_classe = $db->query($sql_classe, 'COAC\Table\Carte');
     $pdf->SetMargins($x,$y);
    
 
-    while($data_classe = mysql_fetch_assoc($req_classe) )
+    while($data_classe = ($req_classe) )
     {
              
 	     if ($data_classe['id'] == 138) {
