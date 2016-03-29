@@ -16,6 +16,13 @@ class Eleve
 		return $this->$key;
 	}
 
+    static function getAllNoId()
+    {
+        $db = new \Coac\Database('COAC2016');
+        return $db->query("SELECT id,Nom,Prenom FROM Etudiant", 'Coac\Table\Eleve');
+    }
+
+
 	static function getAll($id)
     {
         $db = new \Coac\Database('COAC2016');

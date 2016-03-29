@@ -36,7 +36,18 @@ else { $id = null; }
 
             <td>
                 <?= Carte::carteButton( $data->id ) ?>
-                <?= Carte::deleteButton( $data->id, $data->id_Carte ) ?>
+        <?php        if($data->Etat != "Autorise"){ ?>
+                    <?= Carte::autoriseButton( $data->id, $data->id_Carte ) ?>
+        <?php        }  ?>
+
+        <?php        if($data->Etat != "Non_autorise"){ ?>
+                    <?= Carte::deleteButton( $data->id, $data->id_Carte ) ?>
+        <?php        }  ?>
+
+        <?php        if($data->Etat != "Perdu"){ ?>
+                    <?= Carte::perduButton( $data->id, $data->id_Carte ) ?>
+        <?php        }  ?>
+
             </td>
         </tr>
 <?php endforeach; ?>  
