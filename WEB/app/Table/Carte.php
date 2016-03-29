@@ -43,16 +43,10 @@ class Carte
                                        		Etat = $etat WHERE id_Etudiant = '$id'", '\Coac\Table\Eleve');
     }
 
-    public static function add($num_carte, $etat){
+    public static function add($eleve_id, $num_carte, $etat){
     	$db = new \Coac\Database('COAC2016');
 
-    	$id = $db->query("SELECT id FROM Etudiant WHERE   Nom = $nom
-                                                AND Prenom = $prenom
-                                                AND id_Promo = $classe",'Coac\Table\Eleve');
-        $id = $id[0] ;
-        $id = $id->id ;
-
-        $db->query("INSERT INTO Carte VALUES (NULL, '$etat', '$num_carte', '$id') ", '\Coac\Table\Carte');
+        $db->query("INSERT INTO Carte VALUES (NULL, '$etat', '$num_carte', '$eleve_id') ", '\Coac\Table\Carte');
 
     }
 
@@ -62,18 +56,41 @@ class Carte
         return $html .= "</a>";
     }
 
+    public static function modif_etat($id, $etat){
+        $db = new \Coac\Database('COAC2016');
+        return $db->query("UPDATE Carte SET Etat = '$etat' WHERE id = $id", 'Coac\Table\Promos');
+    }
+
     public static function deleteButton($id, $idCarte){
         $db = new \Coac\Database('COAC2016');
 		$name = $db->query("SELECT Nom,Prenom,id FROM Etudiant WHERE id = " . $id, '\Coac\Table\Eleve');
-        $html = "<a href='?p=carte.delete&id=" . $idCarte . "' ";
-        $html .= "onclick=\"return(confirm('Confirmer la désactivation de la carte de :\\n\\n" . $name[0]->Nom . " " . $name[0]->Prenom/* . $liste->Nom $liste->prenom*/ . "'));\">";
+        $etat = "non_autorise" ;
+        $html = "<a href='?p=carte.statut&id=" . $idCarte . "& etat=" .$etat. "' ";
+        $html .= "onclick=\"return(confirm('Voulez vous ne pas autoriser la carte de :\\n\\n" . $name[0]->Nom . " " . $name[0]->Prenom/* . $liste->Nom $liste->prenom*/ . "'));\">";
         $html .= "<img src='img/supprime.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
         return $html .= "</a>";
     }
 
-    public static function delete($id){
+
+    public static function autoriseButton($id, $idCarte){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("UPDATE Carte SET Etat = 'Perdu' WHERE id = $id", 'Coac\Table\Promos');
+        $name = $db->query("SELECT Nom,Prenom,id FROM Etudiant WHERE id = " . $id, '\Coac\Table\Eleve');
+        $etat = "autorise" ;
+        $html = "<a href='?p=carte.statut&id=" . $idCarte . "& etat=" .$etat. "' ";
+        $html .= "onclick=\"return(confirm('Voulez vous autoriser la carte de :\\n\\n" . $name[0]->Nom . " " . $name[0]->Prenom/* . $liste->Nom $liste->prenom*/ . "'));\">";
+        $html .= "<img src='img/autorise.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
+        return $html .= "</a>";
+    }
+
+
+    public static function perduButton($id, $idCarte){
+        $db = new \Coac\Database('COAC2016');
+        $name = $db->query("SELECT Nom,Prenom,id FROM Etudiant WHERE id = " . $id, '\Coac\Table\Eleve');
+        $etat = "desactive" ;
+        $html = "<a href='?p=carte.statut&id=" . $idCarte . "& etat=" .$etat. "' ";
+        $html .= "onclick=\"return(confirm('Voulez vous désactiver la carte de :\\n\\n" . $name[0]->Nom . " " . $name[0]->Prenom/* . $liste->Nom $liste->prenom*/ . "'));\">";
+        $html .= "<img src='img/lost.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
+        return $html .= "</a>";
     }
 
 }
