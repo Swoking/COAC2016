@@ -12,6 +12,15 @@ EleveList::EleveList( COAC *fen, QWidget *parent) :
     showList();
 }
 
+EleveList::EleveList( AddCarte *fen, QWidget *parent) :
+    QDialog(parent),
+    fenetreAddCarte(fen)
+{
+    setupUi(this);
+    connect( treeListEleve, SIGNAL(doubleClicked(QModelIndex)), fenetreAddCarte, SLOT(onDoubleClickListEleve(QModelIndex)) );
+    showList();
+}
+
 void EleveList::showList() {
     Database db;
     if(db.getDB().isOpen()){

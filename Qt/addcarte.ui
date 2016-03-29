@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="1" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -23,6 +23,50 @@
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labNum">
+       <property name="text">
+        <string>&amp;Numero :</string>
+       </property>
+       <property name="buddy">
+        <cstring>ledtNum</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labEtat">
+       <property name="text">
+        <string>&amp;Etat :</string>
+       </property>
+       <property name="buddy">
+        <cstring>ledtEtat</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labEleve">
+       <property name="text">
+        <string>Ele&amp;ve :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="ledtNum"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="ledtEtat"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="pbuChooseEleve">
+       <property name="text">
+        <string>&amp;Choisir un élève</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -35,8 +79,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>227</x>
+     <y>278</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -51,8 +95,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>295</x>
+     <y>284</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
