@@ -50,6 +50,7 @@ class Database {
 	public function query($statement, $class_name) {
 		$res = $this->getPDO()->query($statement);
 		$datas = $res->fetchAll( PDO::FETCH_CLASS, $class_name );
+		var_dump($datas);
 		return $datas;
 	}
 
