@@ -57,6 +57,7 @@ public slots:
     void displayViewfinder();
     void displayCapturedImage();
     void onDoubleClickListEleve(QModelIndex);
+    void closeEvent(QCloseEvent *);
 };
 
 #endif // COAC_H

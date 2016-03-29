@@ -294,3 +294,9 @@ qDebug() << query.value(1).toString();
     }
 
 }
+
+void COAC::closeEvent(QCloseEvent *) {
+    delete elevelist;
+    delete addcarte;
+    delete addclasse;
+}
