@@ -106,12 +106,51 @@ class Log
         $db = new \Coac\Database('COAC2016');
 
         $date = time(Y-m-d);
-        $evenement = "Modification des informations d'une classe $name" ;
+        $evenement = "Modification des informations de la classe $name" ;
 
         return $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, $date, $evenement)", 'Coac\Table\Log');
 
     }
 
+    public static function lycee_add($name){
+        $db = new \Coac\Database('COAC2016');
+
+        $date = time(Y-m-d);
+        $evenement = "Ajout du lycee $name" ;
+
+        return $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, $date, $evenement)", 'Coac\Table\Log');
+
+    }
+
+    public static function lycee_delete($name){
+        $db = new \Coac\Database('COAC2016');
+
+        $date = time(Y-m-d);
+        $evenement = "Suppression du lycee $name" ;
+
+        return $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, $date, $evenement)", 'Coac\Table\Log');
+
+    }
+
+    public static function carte_add($id, $num_carte){
+        $db = new \Coac\Database('COAC2016');
+
+        $date = time(Y-m-d);
+        $evenement = "Ajout d'une carte appartenant à $prenom $nom" ;
+
+        return $db->query("INSERT INTO Journalisation VALUES (NULL, $id, $num_carte, $date, $evenement)", 'Coac\Table\Log');
+
+    }
+
+    public static function carte_statut($id, $num_carte, $prenom, $nom){
+        $db = new \Coac\Database('COAC2016');
+
+        $date = time(Y-m-d);
+        $evenement = "Modification de l'état de la carte appartenant à l'élève" . $prenom ." ". $nom;
+
+        return $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, $date, $evenement)", 'Coac\Table\Log');
+
+    }
 
 
 }

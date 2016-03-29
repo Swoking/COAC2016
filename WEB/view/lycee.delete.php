@@ -1,5 +1,6 @@
 <?php
 use \Coac\Table\Lycee;
+use \Coac\Table\Log;
 
 $find = false; // controle si une classe est trouvée
 $lycee = NULL;
@@ -10,6 +11,8 @@ foreach( Lycee::getAll() as $data ) {
         $lycee = $data; // copie du lycee dans une variable
         
         Lycee::delete( $data->id );// supression du lycee
+        Log::lycee_delete($lycee->Lycee);
+
         break;
     }
 }

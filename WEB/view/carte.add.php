@@ -3,13 +3,15 @@ use \Coac\Table\Promos;
 use \Coac\Table\Eleve;
 use \Coac\Table\Lycee;
 use \Coac\Table\Carte;
+use \Coac\Table\Log;
 
 
 
 if ( !empty($_POST) ) {
     var_dump($_POST);
 
-    Carte::add($_POST['eleve_id'], $_POST['num_carte'], $_POST['etat']); 
+    Carte::add($_POST['eleve_id'], $_POST['num_carte'], $_POST['etat']);
+    Log::carte_add($_POST['eleve_id'], $_POST['num_carte']);
 }
 
 ?>

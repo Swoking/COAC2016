@@ -1,9 +1,11 @@
 <?php
 use Coac\Table\Lycee;
+use \Coac\Table\Log;
 
 if ( !empty($_POST) ) {
     var_dump($_POST);
-    Lycee::add( $_POST['lycee'] );
+    Lycee::add($_POST['lycee']);
+    Log::lycee_add($_POST['lycee']);
 }
 ?>
 <center>
