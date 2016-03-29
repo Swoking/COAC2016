@@ -10,33 +10,15 @@ COAC::COAC( QWidget *parent ) :
     mode(Ajout)
 {
     setupUi(this);
-    /*
-    QToolButton *tbEleveList = new QToolButton;
-    tbEleveList->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr("1"), tbEleveList));
-    tbEleveList->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-    QToolButton *tbAddClasse = new QToolButton;
-    tbAddClasse->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr("2"), tbAddClasse));
-    tbAddClasse->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-    QToolButton *tbAddAddCarte = new QToolButton;
-    tbAddAddCarte->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr("3"), tbAddAddCarte));
-    tbAddAddCarte->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-    mainToolBar->addWidget(tbAddClasse);
-    mainToolBar->addWidget(tbAddAddCarte);
-    mainToolBar->addWidget(tbEleveList);
-    mainToolBar->setEnabled(true);
-
-    connect(tbEleveList, SIGNAL(clicked(bool)), this, SLOT(onPushActionEleve(bool)));
-*/
     camera = new Camera();
     elevelist = new EleveList(this);
     addcarte = new AddCarte(this);
     addclasse = new AddClass(this);
-    connect( actionEleve, SIGNAL(triggered(bool)), this, SLOT(onPushActionEleve(bool)) );
-    connect(actionAjouterCarte, SIGNAL(triggered(bool)), this , SLOT(onPushActionAddCarte(bool)));
-    connect(camera->imageCapture, SIGNAL(imageCaptured(int,QImage)),    camera,   SLOT(processCapturedImage(int,QImage)));
+    connect( actionEleve,           SIGNAL(triggered(bool)), this, SLOT(onPushActionEleve(bool)) );
+    connect( actionAjouterCarte,    SIGNAL(triggered(bool)), this, SLOT(onPushActionAddCarte(bool)) );
+    connect( actionAjouterClasse,   SIGNAL(triggered(bool)), this, SLOT(onPushActionAddClasse(bool)) );
+    connect( camera->imageCapture,  SIGNAL(imageCaptured(int,QImage)),    camera,   SLOT(processCapturedImage(int,QImage)));
     //connect(camera->imageCapture, SIGNAL(readyForCaptureChanged(bool)), camera,   SLOT(readyForCapture(bool)));
     //connect(camera->imageCapture, SIGNAL(imageCaptured(int,QImage)),    camera,   SLOT(processCapturedImage(int,QImage)));
     //connect(camera->imageCapture, SIGNAL(imageSaved(int,QString)),      camera,   SLOT(imageSaved(int,QString)));
@@ -254,17 +236,7 @@ void COAC::onDoubleClickListEleve(QModelIndex index)
         query.exec();
 
         while (query.next()) {
-            //nom = ledtNom->text();
-            //prenom = ledtPrenom->text();
-            //idPromo = cmbPromos->itemData( cmbPromos->currentIndex() ).toInt();
-            //adresse = ledtAddr->text();
-            //ville = ledtVille->text();
-            //cp = ledtCP->text();
-            //mail = ledtMail->text();
-            //if(rdbHomme->isChecked()) { sex = "Masculin"; }
-            //else {                      sex =  "Feminin";  }
-            //date = cmbAnnee->itemData( cmbAnnee->currentIndex() ).toString() + "-" +cmbMoi->itemData( cmbMoi->currentIndex() ).toString() + "-" + cmbJour->itemData( cmbJour->currentIndex() ).toString();
-qDebug() << query.value(1).toString();
+            qDebug() << query.value(1).toString();
 
             id = query.value(0).toInt();
             ledtNom->setText( query.value(1).toString() );
