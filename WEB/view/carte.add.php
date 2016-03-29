@@ -2,12 +2,15 @@
 use \Coac\Table\Promos;
 use \Coac\Table\Eleve;
 use \Coac\Table\Lycee;
+use \Coac\Table\Carte;
+
 
 
 if ( !empty($_POST) ) {
     var_dump($_POST);
 
-    Carte::add($_POST['eleve'], $_POST['num_carte'], $_POST['etat']); 
+    Carte::add($_POST['eleve_id'], $_POST['num_carte'], $_POST['etat']); 
+}
 
 ?>
 
@@ -15,40 +18,50 @@ if ( !empty($_POST) ) {
 
     <h1>&mdash; Ajouter une carte &mdash;</h1>
 
-    <form name='add' action='#' method='POST'>
+    <form action='' method='GET'>
+                <input type="hidden" name="p" value="carte.add">
 
-        <table>
-            <tr>
-                <td></td>
-                <td>
 
-                    <table>
+    <table>
 
                         <tr>
-                            <td>Classe :</td>
+                            <td>Choisir un élève parmi une classe :</td>
                             <td>
                                 <select name="classe" id="classe">
                                     <?php foreach (Promos::getAll() as $data) : ?>
-                                        <option value='<?= $data->id ?>' > <?= $data->Nom?> </option>
+                                        <option value='<?= $data->id ?>' > <?= $data->Nom ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </td>
                         </tr>
+    </table>
 
+              <input type="Submit" value="Choisir" >              
+
+    </form>
+    <br/>
+    <br/>
+
+
+    <table>
+
+    <form name='add' action='#' method='POST'>
+
+  
                         <tr>
                             <td>Eleve :</td>
                             <td>
-                                <select name="eleve" id="eleve">
+                                <select name="eleve_id" id="eleve_id">
                            <?php if ( !isset($_GET['classe']) ) : ?> 
-                                    <?php foreach (Eleve::getAll() as $data) : ?>
-                                        <option value='<?= $data->id ?>' > <?= $data->Nom?> <?= $data->Prenom ?></option>
+                                    <?php foreach (Eleve::getAllNoId() as $data) : ?>
+                                        <option value='<?= $data->id ?>' > <?= $data->Nom ?> <?= $data->Prenom ?></option>
                                     <?php endforeach; ?>
 
                                     <?php else : ?>
-                                    <?php foreach (Eleve::getAll() as $data) : ?>
-                                        <option value='<?= $data->id ?>' > <?= $data->Nom?> <?= $data->Prenom ?></option>
+                                    <?php foreach (Eleve::getAll($_GET['classe']) as $data) : ?>
+                                        <option value='<?= $data->id ?>' > <?= $data->Nom ?> <?= $data->Prenom ?></option>
                                     <?php endforeach; ?>
-           
+                            <?php endif; ?>           
                                 </select>
                             </td>
                         </tr>
@@ -67,8 +80,7 @@ if ( !empty($_POST) ) {
                         </tr>
                     </table>
                     <input type="Submit" value="Envoyer" name="eleve_envoyer">
-                <td>
-        <br>
+               
     </form>
     
 </center>
