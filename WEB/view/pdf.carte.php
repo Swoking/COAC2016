@@ -30,7 +30,7 @@ $req_classe = $db->query($sql_classe, 'COAC\Table\Carte');
          {
              $pdf->AddPage('L', array (74,46));
              $pdf->Image('images/CarteModele.png', null, null, 74, 46, 'PNG');
-             $pdf->Image('http://192.168.1.200/includes/image.php?id='.$data['id'].'', $x+47, $y+4.3, 23, 28, 'JPG');
+              $pdf->Image('http://192.168.1.200/includes/image.php?id='.$data['id'].'', $x+47, $y+4.3, 23, 28, 'JPG');
              $pdf->Text($x+13, $y+19.9, ''.$data['Nom'].' '.$data['Prenom'].'');//Abscisse Ordonnée Texte
              $pdf->Text($x+13, $y+24.6, ''.$data['Entree'].' - '.$data['Sortie'].'' );
              $pdf->Text($x+13, $y+29.8, $data['DateNaissance']);
