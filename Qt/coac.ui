@@ -374,9 +374,11 @@ naissance :</string>
    </property>
    <widget class="QMenu" name="menuList">
     <property name="title">
-     <string>&amp;List</string>
+     <string>&amp;Liste</string>
     </property>
     <addaction name="actionEleve"/>
+    <addaction name="actionAjouterClasse"/>
+    <addaction name="actionAjouterCarte"/>
    </widget>
    <addaction name="menuList"/>
   </widget>
@@ -404,6 +406,16 @@ naissance :</string>
   <action name="actionEleve">
    <property name="text">
     <string>&amp;Eleve</string>
+   </property>
+  </action>
+  <action name="actionAjouterClasse">
+   <property name="text">
+    <string>Ajouter &amp;classe</string>
+   </property>
+  </action>
+  <action name="actionAjouterCarte">
+   <property name="text">
+    <string>Ajouter c&amp;arte</string>
    </property>
   </action>
  </widget>

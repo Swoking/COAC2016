@@ -10,16 +10,32 @@ COAC::COAC( QWidget *parent ) :
     mode(Ajout)
 {
     setupUi(this);
-
+    /*
     QToolButton *tbEleveList = new QToolButton;
-    tbEleveList->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr(""), tbEleveList));
+    tbEleveList->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr("1"), tbEleveList));
     tbEleveList->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+    QToolButton *tbAddClasse = new QToolButton;
+    tbAddClasse->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr("2"), tbAddClasse));
+    tbAddClasse->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+    QToolButton *tbAddAddCarte = new QToolButton;
+    tbAddAddCarte->setDefaultAction(new QAction(QIcon(":/img/iconEleveList.bmp"), QObject::tr("3"), tbAddAddCarte));
+    tbAddAddCarte->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+    mainToolBar->addWidget(tbAddClasse);
+    mainToolBar->addWidget(tbAddAddCarte);
     mainToolBar->addWidget(tbEleveList);
     mainToolBar->setEnabled(true);
 
+    connect(tbEleveList, SIGNAL(clicked(bool)), this, SLOT(onPushActionEleve(bool)));
+*/
     camera = new Camera();
     elevelist = new EleveList(this);
+    addcarte = new AddCarte(this);
+    addclasse = new AddClass(this);
     connect( actionEleve, SIGNAL(triggered(bool)), this, SLOT(onPushActionEleve(bool)) );
+    connect(actionAjouterCarte, SIGNAL(triggered(bool)), this , SLOT(onPushActionAddCarte(bool)));
     connect(camera->imageCapture, SIGNAL(imageCaptured(int,QImage)),    camera,   SLOT(processCapturedImage(int,QImage)));
     //connect(camera->imageCapture, SIGNAL(readyForCaptureChanged(bool)), camera,   SLOT(readyForCapture(bool)));
     //connect(camera->imageCapture, SIGNAL(imageCaptured(int,QImage)),    camera,   SLOT(processCapturedImage(int,QImage)));
@@ -36,6 +52,17 @@ void COAC::onPushActionEleve(bool i){
     Q_UNUSED(i)
     elevelist = new EleveList(this);
     elevelist->show();
+}
+void COAC::onPushActionAddCarte(bool i) {
+    Q_UNUSED(i)
+    addcarte = new AddCarte(this);
+    addcarte->show();
+}
+
+void COAC::onPushActionAddClasse(bool i) {
+    Q_UNUSED(i)
+    addclasse = new AddClass(this);
+    addclasse->show();
 }
 
 void COAC::printPromos() {

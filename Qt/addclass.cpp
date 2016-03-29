@@ -1,7 +1,8 @@
 #include "addclass.h"
 
-AddClass::AddClass(QWidget *parent) :
-    QDialog(parent)
+AddClass::AddClass(COAC *fen, QWidget *parent) :
+    QDialog(parent),
+    fenetre(fen)
 {
     setupUi(this);
 }

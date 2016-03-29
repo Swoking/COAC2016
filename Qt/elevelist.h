@@ -1,7 +1,7 @@
 #ifndef ELEVELIST_H
 #define ELEVELIST_H
 
-#include "ui_elevelist.h"
+#include ".uic/ui_elevelist.h"
 #include "coac.h"
 #include "database.h"
 

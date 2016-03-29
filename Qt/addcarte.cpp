@@ -1,7 +1,8 @@
 #include "addcarte.h"
 
-AddCarte::AddCarte(QWidget *parent) :
-    QDialog(parent)
+AddCarte::AddCarte(COAC *fen, QWidget *parent) :
+    QDialog(parent),
+    fenetre(fen)
 {
     setupUi(this);
 }
