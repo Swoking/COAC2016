@@ -23,16 +23,19 @@ SOURCES += main.cpp \
     coac.cpp \
     database.cpp \
     camera.cpp \
-    elevelist.cpp
+    elevelist.cpp \
+    addclass.cpp
 
 HEADERS  += \
     coac.h \
     database.h \
     camera.h \
-    elevelist.h
+    elevelist.h \
+    addclass.h
 
 FORMS    += coac.ui \
-            elevelist.ui
+            elevelist.ui \
+    addclass.ui
 
 RESOURCES += \
     ressource.qrc
