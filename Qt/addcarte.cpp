@@ -18,6 +18,7 @@ AddCarte::~AddCarte(){
 }
 
 void AddCarte::onPushActionAddClasse(bool i){
+    Q_UNUSED(i)
     elevelist = new EleveList(this);
     elevelist->show();
 }
