@@ -5,9 +5,12 @@
 #include "coac.h"
 #include "elevelist.h"
 #include <QModelIndex>
+#include <QSqlQuery>
+#include "database.h"
 
 class COAC;
 class EleveList;
+class Database;
 
 class AddCarte : public QDialog, private Ui::AddCarte
 {

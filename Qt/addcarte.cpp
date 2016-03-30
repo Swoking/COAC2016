@@ -24,6 +24,16 @@ void AddCarte::onDoubleClickListEleve(QModelIndex index){
     qDebug() << "AddCarte::onDoubleClickListEleve() > l'ID de l'élève sélectionner est" << id;
     elevelist->hide();
 
+    Database db;
+    if(db.getDB().isOpen()) {
+        QSqlQuery query;
+        query.prepare("SELECT nom, prenom FROM Etudiant WHERE id = ?");
+        query.addBindValue(id);
+        query.exec();
+        qDebug() << query.lastError().text();
+        query.next();
+        pbuChooseEleve->setText(query.value(0).toString() + " " + query.value(1).toString());
+    }
    // QSqlQuery
 }
 
