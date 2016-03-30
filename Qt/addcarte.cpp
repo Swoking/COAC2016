@@ -11,7 +11,7 @@ AddCarte::AddCarte(COAC *fen, QWidget *parent) :
 }
 
 AddCarte::~AddCarte(){
-    delete elevelist;
+    elevelist->hide();
 }
 
 void AddCarte::onPushActionAddClasse(bool i){
@@ -22,11 +22,11 @@ void AddCarte::onPushActionAddClasse(bool i){
 void AddCarte::onDoubleClickListEleve(QModelIndex index){
     id = index.data(Qt::UserRole + 1).toInt();
     qDebug() << "AddCarte::onDoubleClickListEleve() > l'ID de l'élève sélectionner est" << id;
-    delete elevelist;
+    elevelist->hide();
 
    // QSqlQuery
 }
 
 void AddCarte::closeEvent(QCloseEvent *){
-    delete elevelist;
+    elevelist->hide();
 }
