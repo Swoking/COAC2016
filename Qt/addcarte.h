@@ -19,6 +19,7 @@ private:
 
 public:
     explicit AddCarte(COAC* fen, QWidget *parent = 0);
+    ~AddCarte();
 
 public slots:
     void onPushActionAddClasse(bool i);

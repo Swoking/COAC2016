@@ -10,6 +10,10 @@ AddCarte::AddCarte(COAC *fen, QWidget *parent) :
     connect(pbuChooseEleve, SIGNAL(clicked(bool)), this, SLOT(onPushActionAddClasse(bool)));
 }
 
+AddCarte::~AddCarte(){
+    delete elevelist;
+}
+
 void AddCarte::onPushActionAddClasse(bool i){
     elevelist = new EleveList(this);
     elevelist->show();
