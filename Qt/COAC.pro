@@ -40,5 +40,4 @@ FORMS    += coac.ui \
     addclass.ui \
     addcarte.ui
 
-RESOURCES += \
-    ressource.qrc
+RESOURCES +=

@@ -54,8 +54,7 @@ SOURCES       = main.cpp \
 		camera.cpp \
 		elevelist.cpp \
 		addclass.cpp \
-		addcarte.cpp .uic/qrc_ressource.cpp \
-		.moc/moc_coac.cpp \
+		addcarte.cpp .moc/moc_coac.cpp \
 		.moc/moc_camera.cpp \
 		.moc/moc_elevelist.cpp \
 		.moc/moc_addclass.cpp \
@@ -67,7 +66,6 @@ OBJECTS       = .obj/main.o \
 		.obj/elevelist.o \
 		.obj/addclass.o \
 		.obj/addcarte.o \
-		.obj/qrc_ressource.o \
 		.obj/moc_coac.o \
 		.obj/moc_camera.o \
 		.obj/moc_elevelist.o \
@@ -384,7 +382,6 @@ Makefile: COAC.pro ../../../../Qt/5.5/gcc_64/mkspecs/linux-g++/qmake.conf ../../
 		../../../../Qt/5.5/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.5/gcc_64/mkspecs/features/lex.prf \
 		COAC.pro \
-		ressource.qrc \
 		/home/gabriel/Qt/5.5/gcc_64/lib/libQt5MultimediaWidgets.prl \
 		/home/gabriel/Qt/5.5/gcc_64/lib/libQt5Multimedia.prl \
 		/home/gabriel/Qt/5.5/gcc_64/lib/libQt5Widgets.prl \
@@ -528,7 +525,6 @@ Makefile: COAC.pro ../../../../Qt/5.5/gcc_64/mkspecs/linux-g++/qmake.conf ../../
 ../../../../Qt/5.5/gcc_64/mkspecs/features/yacc.prf:
 ../../../../Qt/5.5/gcc_64/mkspecs/features/lex.prf:
 COAC.pro:
-ressource.qrc:
 /home/gabriel/Qt/5.5/gcc_64/lib/libQt5MultimediaWidgets.prl:
 /home/gabriel/Qt/5.5/gcc_64/lib/libQt5Multimedia.prl:
 /home/gabriel/Qt/5.5/gcc_64/lib/libQt5Widgets.prl:
@@ -550,7 +546,6 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ressource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents coac.h database.h camera.h elevelist.h addclass.h addcarte.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp coac.cpp database.cpp camera.cpp elevelist.cpp addclass.cpp addcarte.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents coac.ui elevelist.ui addclass.ui addcarte.ui $(DISTDIR)/
@@ -574,13 +569,8 @@ mocables: compiler_moc_header_make_all compiler_moc_source_make_all
 
 check: first
 
-compiler_rcc_make_all: .uic/qrc_ressource.cpp
+compiler_rcc_make_all:
 compiler_rcc_clean:
-	-$(DEL_FILE) .uic/qrc_ressource.cpp
-.uic/qrc_ressource.cpp: ressource.qrc \
-		img/iconEleveList.bmp
-	/home/gabriel/Qt/5.5/gcc_64/bin/rcc -name ressource ressource.qrc -o .uic/qrc_ressource.cpp
-
 compiler_moc_header_make_all: .moc/moc_coac.cpp .moc/moc_camera.cpp .moc/moc_elevelist.cpp .moc/moc_addclass.cpp .moc/moc_addcarte.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) .moc/moc_coac.cpp .moc/moc_camera.cpp .moc/moc_elevelist.cpp .moc/moc_addclass.cpp .moc/moc_addcarte.cpp
@@ -940,6 +930,8 @@ compiler_moc_header_clean:
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		coac.h
 	/home/gabriel/Qt/5.5/gcc_64/bin/moc $(DEFINES) -I/home/gabriel/Qt/5.5/gcc_64/mkspecs/linux-g++ -I/home/gabriel/Documents/COAC/COAC2016/Qt -I/home/gabriel/Qt/5.5/gcc_64/include -I/home/gabriel/Qt/5.5/gcc_64/include/QtMultimediaWidgets -I/home/gabriel/Qt/5.5/gcc_64/include/QtMultimedia -I/home/gabriel/Qt/5.5/gcc_64/include/QtWidgets -I/home/gabriel/Qt/5.5/gcc_64/include/QtGui -I/home/gabriel/Qt/5.5/gcc_64/include/QtSql -I/home/gabriel/Qt/5.5/gcc_64/include/QtNetwork -I/home/gabriel/Qt/5.5/gcc_64/include/QtCore coac.h -o .moc/moc_coac.cpp
 
@@ -1437,6 +1429,8 @@ compiler_moc_header_clean:
 		addcarte.h \
 		.uic/ui_addcarte.h \
 		elevelist.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		.uic/ui_addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
@@ -1797,6 +1791,8 @@ compiler_moc_header_clean:
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
 		addclass.h
@@ -1918,17 +1914,8 @@ compiler_moc_header_clean:
 		../../../../Qt/5.5/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialog \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qcombobox.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
@@ -1940,10 +1927,12 @@ compiler_moc_header_clean:
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qrubberband.h \
-		coac.h \
-		.uic/ui_coac.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QFormLayout \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qformlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QLayout \
@@ -1952,9 +1941,11 @@ compiler_moc_header_clean:
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGroupBox \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgroupbox.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QLabel \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qlabel.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QLineEdit \
@@ -1963,6 +1954,14 @@ compiler_moc_header_clean:
 		../../../../Qt/5.5/gcc_64/include/QtGui/qtextformat.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qpen.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		coac.h \
+		.uic/ui_coac.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGroupBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgroupbox.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMenu \
@@ -1978,9 +1977,6 @@ compiler_moc_header_clean:
 		../../../../Qt/5.5/gcc_64/include/QtGui/qglyphrun.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qrawfont.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qfontdatabase.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QRadioButton \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QStackedWidget \
@@ -2155,6 +2151,8 @@ compiler_moc_header_clean:
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		.uic/ui_addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
@@ -2294,7 +2292,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -2651,6 +2649,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		.uic/ui_addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage
@@ -3009,6 +3009,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		.uic/ui_addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
@@ -3620,6 +3622,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		.uic/ui_addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
@@ -3979,10 +3983,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		../../../../Qt/5.5/gcc_64/include/QtMultimedia/qmediaencodersettings.h \
 		addcarte.h \
 		.uic/ui_addcarte.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		addclass.h \
 		.uic/ui_addclass.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
-		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QStandardItem \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qstandarditemmodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/elevelist.o elevelist.cpp
@@ -4342,6 +4347,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QImage
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/addclass.o addclass.cpp
 
@@ -4462,17 +4469,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		../../../../Qt/5.5/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialog \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qcombobox.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
@@ -4484,10 +4482,12 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qrubberband.h \
-		coac.h \
-		.uic/ui_coac.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QComboBox \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialog \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QFormLayout \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qformlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QLayout \
@@ -4496,9 +4496,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGroupBox \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgroupbox.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QLabel \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qlabel.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QLineEdit \
@@ -4507,6 +4509,14 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		../../../../Qt/5.5/gcc_64/include/QtGui/qtextformat.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qpen.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		coac.h \
+		.uic/ui_coac.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGroupBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgroupbox.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMenu \
@@ -4522,9 +4532,6 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		../../../../Qt/5.5/gcc_64/include/QtGui/qglyphrun.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qrawfont.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qfontdatabase.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QRadioButton \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QStackedWidget \
@@ -4700,11 +4707,10 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 		.uic/ui_elevelist.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTreeView \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtreeview.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/QImage
+		../../../../Qt/5.5/gcc_64/include/QtGui/QImage \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QModelIndex \
+		../../../../Qt/5.5/gcc_64/include/QtSql/QSqlQuery
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/addcarte.o addcarte.cpp
-
-.obj/qrc_ressource.o: .uic/qrc_ressource.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/qrc_ressource.o .uic/qrc_ressource.cpp
 
 .obj/moc_coac.o: .moc/moc_coac.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_coac.o .moc/moc_coac.cpp
