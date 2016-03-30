@@ -34,7 +34,6 @@ void AddCarte::onDoubleClickListEleve(QModelIndex index){
         query.prepare("SELECT nom, prenom FROM Etudiant WHERE id = ?");
         query.addBindValue(id);
         query.exec();
-        qDebug() << query.lastError().text();
         query.next();
         pbuChooseEleve->setText(query.value(0).toString() + " " + query.value(1).toString());
     }
