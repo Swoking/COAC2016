@@ -4,6 +4,7 @@
 #include ".uic/ui_addcarte.h"
 #include "coac.h"
 #include "elevelist.h"
+#include <QModelIndex>
 
 class COAC;
 class EleveList;
@@ -21,6 +22,7 @@ public:
 
 public slots:
     void onPushActionAddClasse(bool i);
+    void onDoubleClickListEleve(QModelIndex);
 };
 
 #endif // ADDCARTE_H
