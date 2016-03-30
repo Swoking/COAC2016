@@ -29,6 +29,7 @@ public slots:
     void onPushActionAddClasse(bool i);
     void onDoubleClickListEleve(QModelIndex);
     void closeEvent(QCloseEvent *);
+    void onAcceptedAddCarte();
 };
 
 #endif // ADDCARTE_H

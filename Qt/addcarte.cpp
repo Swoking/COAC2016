@@ -8,9 +8,12 @@ AddCarte::AddCarte(COAC *fen, QWidget *parent) :
 
     elevelist = new EleveList(this);
     connect(pbuChooseEleve, SIGNAL(clicked(bool)), this, SLOT(onPushActionAddClasse(bool)));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(onAcceptedAddCarte()));
+
     cmbStatus->addItem("Autorisé",      QVariant("Autorise"));
     cmbStatus->addItem("Non autorisé",  QVariant("nomautorisé"));
     cmbStatus->addItem("Perdu",         QVariant("perdu"));
+
 }
 
 AddCarte::~AddCarte(){
@@ -42,4 +45,18 @@ void AddCarte::onDoubleClickListEleve(QModelIndex index){
 
 void AddCarte::closeEvent(QCloseEvent *){
     elevelist->hide();
+}
+void AddCarte::onAcceptedAddCarte(){
+    qDebug() << "AddCarte::onAcceptedAddCarte() > Ok";
+
+    Database db;
+    if(db.getDB().isOpen()) {
+        QSqlQuery query;
+        query.prepare("INSERT INTO Carte(Etat, Num_Carte, id_Etudiant) "
+                      "VALUE(?, ?, ?)");
+        query.addBindValue(cmbStatus->currentData());
+        query.addBindValue(ledtNum->text());
+        query.addBindValue(id);
+        query.exec();
+    }
 }
