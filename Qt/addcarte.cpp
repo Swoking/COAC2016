@@ -8,6 +8,9 @@ AddCarte::AddCarte(COAC *fen, QWidget *parent) :
 
     elevelist = new EleveList(this);
     connect(pbuChooseEleve, SIGNAL(clicked(bool)), this, SLOT(onPushActionAddClasse(bool)));
+    cmbStatus->addItem("Autorisé",      QVariant("Autorise"));
+    cmbStatus->addItem("Non autorisé",  QVariant("nomautorisé"));
+    cmbStatus->addItem("Perdu",         QVariant("perdu"));
 }
 
 AddCarte::~AddCarte(){
