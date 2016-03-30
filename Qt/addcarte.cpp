@@ -22,3 +22,7 @@ void AddCarte::onPushActionAddClasse(bool i){
 void AddCarte::onDoubleClickListEleve(QModelIndex index){
     qDebug() << "AddCarte::onDoubleClickListEleve() > l'ID de l'élève sélectionner est" << index.data(Qt::UserRole + 1).toInt();
 }
+
+void AddCarte::closeEvent(QCloseEvent *){
+    delete elevelist;
+}

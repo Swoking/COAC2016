@@ -16,6 +16,7 @@ class AddCarte : public QDialog, private Ui::AddCarte
 private:
     COAC *fenetre;
     EleveList *elevelist;
+    int id;
 
 public:
     explicit AddCarte(COAC* fen, QWidget *parent = 0);
@@ -24,6 +25,7 @@ public:
 public slots:
     void onPushActionAddClasse(bool i);
     void onDoubleClickListEleve(QModelIndex);
+    void closeEvent(QCloseEvent *);
 };
 
 #endif // ADDCARTE_H
