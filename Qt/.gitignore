@@ -3,3 +3,4 @@ ui_*
 *.user
 COAC
 *~
+Makefile
