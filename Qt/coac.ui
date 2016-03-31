@@ -377,10 +377,22 @@ naissance :</string>
      <string>&amp;Liste</string>
     </property>
     <addaction name="actionEleve"/>
+    <addaction name="actionClasse"/>
+    <addaction name="actionSalle"/>
+    <addaction name="actionCarte"/>
+    <addaction name="actionLog"/>
+   </widget>
+   <widget class="QMenu" name="menuAjouter">
+    <property name="title">
+     <string>Ajouter</string>
+    </property>
     <addaction name="actionAjouterClasse"/>
     <addaction name="actionAjouterCarte"/>
+    <addaction name="actionAjouterSalle"/>
+    <addaction name="actionAjouterLycee"/>
    </widget>
    <addaction name="menuList"/>
+   <addaction name="menuAjouter"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="enabled">
@@ -416,6 +428,36 @@ naissance :</string>
   <action name="actionAjouterCarte">
    <property name="text">
     <string>Ajouter c&amp;arte</string>
+   </property>
+  </action>
+  <action name="actionAjouterSalle">
+   <property name="text">
+    <string>Ajouter &amp;salle</string>
+   </property>
+  </action>
+  <action name="actionAjouterLycee">
+   <property name="text">
+    <string>Ajouter lycée</string>
+   </property>
+  </action>
+  <action name="actionClasse">
+   <property name="text">
+    <string>&amp;Classe</string>
+   </property>
+  </action>
+  <action name="actionSalle">
+   <property name="text">
+    <string>&amp;Salle</string>
+   </property>
+  </action>
+  <action name="actionCarte">
+   <property name="text">
+    <string>&amp;Carte</string>
+   </property>
+  </action>
+  <action name="actionLog">
+   <property name="text">
+    <string>&amp;Log</string>
    </property>
   </action>
  </widget>
