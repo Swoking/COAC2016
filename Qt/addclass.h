@@ -13,6 +13,9 @@ class AddClass : public QDialog, private Ui::AddClass
 public:
     COAC *fenetre;
     explicit AddClass(COAC* fen, QWidget *parent = 0);
+
+public slots:
+    void onAcceptedAddClasse();
 };
 
 #endif // ADDCLASS_H
