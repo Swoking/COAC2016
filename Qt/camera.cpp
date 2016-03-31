@@ -57,7 +57,10 @@ void Camera::processCapturedImage(int requestId, const QImage& img)
     qDebug() << "Camera::processCapturedImage() > Capture en cour";
     QImage scaledImage = img.scaled(viewfinder->size(),
                        Qt::KeepAspectRatio,
-                       Qt::SmoothTransformation);
+                       Qt::SmoothTransformation).copy(img.size().height(),
+                                                      (img.size().width() - 112) / 2,
+                                                      112,
+                                                      200);
     image = scaledImage;
 
     finishProcessCapture = true;
