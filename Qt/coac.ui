@@ -112,7 +112,7 @@
              </palette>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="viewfinderPage">
              <layout class="QGridLayout" name="gridLayout_5">
@@ -136,6 +136,9 @@
                 </property>
                 <property name="text">
                  <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
