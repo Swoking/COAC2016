@@ -40,6 +40,6 @@ foreach( Carte::getFromIdCarte($id_Carte) as $data ) {
 ?>
 
 <center>
-    <h1>&mdash; La carte de <?= $prenom $nom $affiche; ?>  &mdash;</h1>
+    <h1>&mdash; La carte de <?= $prenom; $nom; $affiche; ?>  &mdash;</h1>
 </center>
 

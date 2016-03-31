@@ -3,17 +3,21 @@ use \Coac\Table\Promos;
 use \Coac\Table\Eleve;
 use \Coac\Table\Lycee;
 use \Coac\Table\Log;
+use \Coac\Table\Carte;
 
 
 
 if ( !empty($_POST) ) {
-    var_dump($_POST);
     Eleve::add($_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['lycee'], $_POST['add'], $_POST['ville'], $_POST['cp'],
-     $_POST['email'], $_POST['sexe'], $_POST['date_naiss']);
+    $_POST['email'], $_POST['sexe'], $_POST['date_naiss']);
 
-    Carte::add($_POST['num_carte'], $_POST['etat']); //marche pas, fatal error requete du dessus
+    $id = Eleve::getIdEleve($_POST['nom'], $_POST['prenom'], $_POST['classe']);
 
-    Log::eleve_add($_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['num_carte']);
+    var_dump($id);
+
+    Carte::add($id, $_POST['num_carte'], $_POST['etat']); 
+
+    Log::eleve_add($_POST['id'], $_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['num_carte']);
 }
 
 ?>

@@ -10,9 +10,8 @@ foreach( Promos::getAll() as $data ) {
     if ($data->id == $_GET['id']) { // test toutes les classes 
         $find = true; // si classe trouvée : controle mis sur vrai (trouvée)
         $promos = $data; // copie de la classe dans une variable
-        
         Promos::delete( $data->id );// supression de la classe
-        Log::promos_add( $data->id );
+        Log::promos_delete( $data->id );
 
         break;
     }

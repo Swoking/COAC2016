@@ -1,6 +1,5 @@
 <?php
 use Coac\Table\Promos;
-use Coac\Table\Html;
 ?>
 <center>
 

@@ -29,6 +29,14 @@ class Eleve
         return $db->query("SELECT id,Nom,Prenom FROM Etudiant WHERE id_Promo = $id", 'Coac\Table\Eleve');
     }
 
+    static function getAllIdEleve($nom, $prenom, $classe)
+    {
+        $db = new \Coac\Database('COAC2016');
+        return $db->query("SELECT id FROM Etudiant WHERE Nom = '$nom' 
+                                                    AND Prenom = '$prenom' 
+                                                    AND id_Promo = '$classe'", 'Coac\Table\Eleve');
+    }
+
     static function getFromId($id)
     {
         $db = new \Coac\Database('COAC2016');
@@ -42,8 +50,8 @@ class Eleve
 
     public static function add($nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss) {
         $db = new \Coac\Database('COAC2016');
-        $db->query("INSERT INTO Etudiant(`Nom`, `Prenom`, `id_Promo`, `id_Lycee`, `Adresse`, `Ville`, `CP`, `Email`, `Sexe`, `Date_Naissance`) 
-                                VALUES ('$nom', '$prenom', '$classe', '$lycee', '$add', '$ville', '$cp', '$email', '$sexe', '$date_naiss') ", '\Coac\Table\Eleve');
+        $db->query("INSERT INTO Etudiant(`id`, `Nom`, `Prenom`, `id_Promo`, `id_Lycee`, `Adresse`, `Ville`, `CP`, `Email`, `Sexe`, `Date_Naissance`, `Image`) 
+                                VALUES (NULL, '$nom', '$prenom', '$classe', '$lycee', '$add', '$ville', '$cp', '$email', '$sexe', '$date_naiss', NULL) ", '\Coac\Table\Eleve');
 
         
     }
