@@ -139,8 +139,13 @@ void COAC::Envoyer(bool c) {
         if(mode == Ajout) {
             setEleveInfo();
 
+            QByteArray imgByteArray;
+            QBuffer bufferImg(&imgByteArray);
+            bufferImg.open(QIODevice::WriteOnly);
+            camera->image.save(&bufferImg, "jpg");
+
             query.prepare("INSERT INTO `COAC2016`.`Etudiant` (`id`, `Nom`, `Prenom`, `id_Promo`, `id_Lycee`, `Adresse`, `Ville`, `CP`, `Email`, `Sexe`, `Date_Naissance`, `Image`) "
-                          "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL);");
+                          "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             query.addBindValue(nom);
             query.addBindValue(prenom);
             query.addBindValue(idPromo);
@@ -151,6 +156,7 @@ void COAC::Envoyer(bool c) {
             query.addBindValue(mail);
             query.addBindValue(sex);
             query.addBindValue(date);
+            query.addBindValue(imgByteArray);
             query.exec();
             qDebug() << "COAC::Envoyer() > " << "Sql error:" << query.lastError().text() << ", Sql error code:" << query.lastError().number();
             qDebug() << "COAC::Envoyer() > " << "Sql query:" << query.lastQuery();
