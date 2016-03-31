@@ -219,6 +219,7 @@ void COAC::imageCapture(bool)
         QCoreApplication::processEvents();
     }
 
+    qDebug() << "H : " << camera->image.height() << " W : " << camera->image.width();
 
     lastImagePreviewLabel->setPixmap(QPixmap::fromImage(camera->image));
     displayCapturedImage();
