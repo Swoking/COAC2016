@@ -21,6 +21,7 @@ public:
     ~Camera();
     bool checkCameraAvailability();
     void setCamera();
+    void setViewfinder(QCameraViewfinder*);
     bool isFinishProcessCapture();
     void setFinishProcessCapture(bool);
     QCamera *my_camera;

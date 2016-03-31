@@ -203,9 +203,7 @@ void COAC::showCamera()
 
 void COAC::imageCapture(bool)
 {
-    //camera->imageCapture->capture();
-    qDebug() << "COAC::imageCapture() > " << "show image";
-    qDebug() << "COAC::imageCapture() > " << camera->image.byteCount();
+    camera->setViewfinder(viewfinder);
     camera->imageCapture->capture();
 
     // tant que le signal n'est pas émit et que le process n'est pas fini
