@@ -21,6 +21,8 @@ public:
     ~Camera();
     bool checkCameraAvailability();
     void setCamera();
+    bool isFinishProcessCapture();
+    void setFinishProcessCapture(bool);
     QCamera *my_camera;
     QImage image;
     QCameraImageCapture *imageCapture;
@@ -30,6 +32,7 @@ public slots:
 
 private:
     QCameraViewfinder *viewfinder;
+    bool finishProcessCapture;
 
 };
 

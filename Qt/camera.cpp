@@ -6,9 +6,11 @@
 Camera::Camera(QObject* parent) :
     QObject(parent),
     my_camera(0),
-    imageCapture(0)
+    imageCapture(0),
+    finishProcessCapture(false)
 {
     checkCameraAvailability();
+
 }
 
 
@@ -43,6 +45,9 @@ void Camera::setCamera()
     }
 
     imageCapture = new QCameraImageCapture(my_camera);
+
+    connect(imageCapture, SIGNAL(imageCaptured(int,QImage)), this, SLOT(processCapturedImage(int,QImage)));
+
 }
 
 void Camera::processCapturedImage(int requestId, const QImage& img)
@@ -53,4 +58,19 @@ void Camera::processCapturedImage(int requestId, const QImage& img)
                        Qt::KeepAspectRatio,
                        Qt::SmoothTransformation);
     image = scaledImage;
+
+    finishProcessCapture = true;
+    qDebug() << "Camera::processCapturedImage() > Capture terminée";
+}
+
+bool Camera::isFinishProcessCapture(){
+    return finishProcessCapture;
+}
+
+void Camera::setFinishProcessCapture(bool state){
+    finishProcessCapture = state;
+}
+
+void Camera::setViewfinder(QCameraViewfinder *tmpViewfinder){
+    viewfinder = tmpViewfinder;
 }

@@ -206,6 +206,16 @@ void COAC::imageCapture(bool)
     //camera->imageCapture->capture();
     qDebug() << "COAC::imageCapture() > " << "show image";
     qDebug() << "COAC::imageCapture() > " << camera->image.byteCount();
+    camera->imageCapture->capture();
+
+    // tant que le signal n'est pas émit et que le process n'est pas fini
+    camera->setFinishProcessCapture(false);
+    qDebug() << "COAC::imageCapture() > Attente de la prise de photo";
+    while (!camera->isFinishProcessCapture()) {
+        QCoreApplication::processEvents();
+    }
+
+
     lastImagePreviewLabel->setPixmap(QPixmap::fromImage(camera->image));
     displayCapturedImage();
     QTimer::singleShot( 4000, this, SLOT( displayViewfinder() ) );
