@@ -43,6 +43,11 @@ if ( $p === 'home' ) {
 } else if ( $p === 'promos.delete')	{ require '../view/promos.delete.php';
 } else if ( $p === 'promos.add')	{ require '../view/promos.add.php';
 
+} else if ( $p === 'salle.list')	{ require '../view/salle.list.php';
+} else if ( $p === 'salle.edit')	{ require '../view/salle.edit.php';
+} else if ( $p === 'salle.delete')	{ require '../view/salle.delete.php';
+} else if ( $p === 'salle.add')		{ require '../view/salle.add.php';
+
 } else if ( $p === 'carte.list')	{ require '../view/carte.list.php';
 } else if ( $p === 'carte.statut')	{ require '../view/carte.statut.php';
 } else if ( $p === 'carte.add')		{ require '../view/carte.add.php';
