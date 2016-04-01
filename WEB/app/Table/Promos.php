@@ -29,7 +29,7 @@ class Promos
 
     public static function delete($id){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("DELETE FROM Promo WHERE id = $id", 'Coac\Table\Promos');
+        $db->query("DELETE FROM Promo WHERE id = $id", 'Coac\Table\Promos');
     }
 
     public static function add($entree, $sortie, $name, $filiere){
@@ -40,7 +40,7 @@ class Promos
 
     public static function edit($id, $entree, $sortie, $name, $filiere){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("UPDATE Promo SET     Entree = '$entree',
+        $db->query("UPDATE Promo SET            Entree = '$entree',
                                                 Sortie = '$sortie',
                                                 Nom = '$name',
                                                 Filiere = '$filiere' WHERE id = '$id' ", '\Coac\Table\Promos');

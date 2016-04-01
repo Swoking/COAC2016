@@ -50,20 +50,18 @@ class Database {
 	
 	public function query($statement, $class_name) {
 		$res = $this->getPDO()->query($statement);
-		var_dump($res->rowCount());
-		if($res->rowCount() > 1) {
+		//var_dump($res->rowCount());
+		if($res->rowCount() > 0) {
 			$datas = $res->fetchAll( PDO::FETCH_CLASS, $class_name );
 			return $datas;
-		} elseif ($res->rowCount() === 1) {
-			$datas = $res->fetch( PDO::FETCH_CLASS, $class_name );
-			return $datas;
 		}
+		return;
 	}
 	
 
 	/*public function query($statement, $class_name) { 
     $res = $this->getPDO()->query($statement); 
-    $datas = $res->fetchAll( PDO::FETCH_CLASS, $class_name ); 
+    $datas = $res->fetchAll( PDO::FETCH_CLASS, $class_nç_èame ); 
     return $datas; 
   } */
 

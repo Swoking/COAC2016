@@ -26,7 +26,6 @@ if ( isset($_GET['p']) ) { // $_GET['p'] = page en paramétre de l'URL
  * Connexion a la BDD
  */
 $db = new Coac\Database('COAC2016'); 
-
 /**
  * Route disponible et affichage de la page
  */
@@ -60,6 +59,7 @@ if ( $p === 'home' ) {
 
 
 } else if ( $p === 'pdf.carte')		{ require '../view/pdf.carte.php';
+} else if ( $p === 'pdf.carte.test2')		{ require '../view/pdf.carte.test2.php';
 
 } else if ( $p === 'log.list')		{ require '../view/log.list.php';
 

@@ -19,14 +19,14 @@ class Eleve
     static function getAllNoId()
     {
         $db = new \Coac\Database('COAC2016');
-        return $db->query("SELECT id,Nom,Prenom FROM Etudiant", 'Coac\Table\Eleve');
+        return $db->query("SELECT id, Nom, Prenom FROM Etudiant", 'Coac\Table\Eleve');
     }
 
 
 	static function getAll($id)
     {
         $db = new \Coac\Database('COAC2016');
-        return $db->query("SELECT id,Nom,Prenom FROM Etudiant WHERE id_Promo = $id", 'Coac\Table\Eleve');
+        return $db->query("SELECT id, Nom, Prenom FROM Etudiant WHERE id_Promo = $id", 'Coac\Table\Eleve');
     }
 
     static function getAllIdEleve($nom, $prenom, $classe)
