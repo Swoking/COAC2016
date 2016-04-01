@@ -28,7 +28,7 @@ class Carte
 	static function getFromId($id)
     {
         $db = new \Coac\Database('COAC2016');
-        return $db->query('SELECT * FROM Carte WHERE id_Etudiant = ' . $_GET['id'], '\Coac\Table\Eleve');
+        return $db->query('SELECT * FROM Carte WHERE id_Etudiant = ' . $_GET['id'], '\Coac\Table\Carte');
     }
 
     static function getFromIdCarte($id)
@@ -39,8 +39,8 @@ class Carte
 
     public static function edit($id, $num_carte, $etat){
     	$db = new \Coac\Database('COAC2016');
-    	return $db->query("UPDATE Carte SET Num_Carte = $num_carte,
-                                       		Etat = $etat WHERE id_Etudiant = '$id'", '\Coac\Table\Eleve');
+    	$db->query("UPDATE Carte SET Num_Carte = '$num_carte',
+                                       		Etat = '$etat' WHERE id_Etudiant = '$id'", '\Coac\Table\Carte');
     }
 
     public static function add($eleve_id, $num_carte, $etat){
@@ -58,7 +58,7 @@ class Carte
 
     public static function modif_etat($id, $etat){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("UPDATE Carte SET Etat = '$etat' WHERE id = $id", 'Coac\Table\Promos');
+        $db->query("UPDATE Carte SET Etat = '$etat' WHERE id = $id", 'Coac\Table\Carte');
     }
 
     public static function deleteButton($id, $idCarte){

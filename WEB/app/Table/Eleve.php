@@ -45,7 +45,7 @@ class Eleve
 
     public static function delete($id){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("DELETE FROM Etudiant WHERE id = $id", 'Coac\Table\Promos');
+        $db->query("DELETE FROM Etudiant WHERE id = $id", 'Coac\Table\Eleve');
     }
 
     public static function add($nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss) {
@@ -58,7 +58,7 @@ class Eleve
 
     public static function edit($id, $nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("UPDATE Etudiant SET  Nom = '$nom',
+        $db->query("UPDATE Etudiant SET  Nom = '$nom',
                                                 Prenom = '$prenom',
                                                 id_Promo = '$classe',
                                                 id_Lycee = '$lycee',

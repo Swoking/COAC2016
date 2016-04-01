@@ -14,7 +14,7 @@ class Salle
 
 	public static function add($nom){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("INSERT INTO Salle VALUES (NULL, '$nom')", 'Coac\Table\Salle');
+        $db->query("INSERT INTO Salle VALUES (NULL, '$nom')", 'Coac\Table\Salle');
 
     }
 
@@ -26,12 +26,12 @@ class Salle
 
     public static function edit($id, $name){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("UPDATE Salle SET     Nom = '$name' WHERE id = '$id' ", '\Coac\Table\Salle');
+        $db->query("UPDATE Salle SET     Nom = '$name' WHERE id = '$id' ", '\Coac\Table\Salle');
     }
 
     public static function delete($id){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("DELETE FROM Salle WHERE id = $id", 'Coac\Table\Salle');
+        $db->query("DELETE FROM Salle WHERE id = $id", 'Coac\Table\Salle');
     }
 
 

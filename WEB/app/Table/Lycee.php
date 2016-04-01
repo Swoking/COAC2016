@@ -28,7 +28,7 @@ class Lycee
 
     public static function delete($id){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("DELETE FROM Lycee WHERE id = $id", 'Coac\Table\Lycee');
+        $db->query("DELETE FROM Lycee WHERE id = $id", 'Coac\Table\Lycee');
     }
 
     public static function add($lycee){
@@ -39,7 +39,7 @@ class Lycee
 
     public static function edit($id, $lycee){
         $db = new \Coac\Database('COAC2016');
-        return $db->query("UPDATE Lycee SET Lycee = '$lycee' WHERE id = '$id' ", '\Coac\Table\Lycee');
+        $db->query("UPDATE Lycee SET Lycee = '$lycee' WHERE id = '$id' ", '\Coac\Table\Lycee');
     }
 
     
