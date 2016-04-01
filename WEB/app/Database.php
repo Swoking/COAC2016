@@ -47,6 +47,7 @@ class Database {
 	 * @param $statement string requéte a exécuter 
 	 * @return $datas Retourne les données sous forme d'objet
 	 */
+	
 	public function query($statement, $class_name) {
 		$res = $this->getPDO()->query($statement);
 		var_dump($res->rowCount());
@@ -54,10 +55,17 @@ class Database {
 			$datas = $res->fetchAll( PDO::FETCH_CLASS, $class_name );
 			return $datas;
 		} elseif ($res->rowCount() === 1) {
-			$datas = $res->fetch(PDO::FETCH_ASSOC);
+			$datas = $res->fetch( PDO::FETCH_CLASS, $class_name );
 			return $datas;
 		}
 	}
+	
+
+	/*public function query($statement, $class_name) { 
+    $res = $this->getPDO()->query($statement); 
+    $datas = $res->fetchAll( PDO::FETCH_CLASS, $class_name ); 
+    return $datas; 
+  } */
 
 	public function prepare($statement, $attributes, $one = false) {
 		$req = $this->getPDO()->prepare()->prepare($statement);
