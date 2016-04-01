@@ -8,13 +8,13 @@ use \Coac\Table\Log;
 
 
 
-var_dump($id);
 
 if ( isset($_GET['id']) | isset($_POST['id']) ) {
 
 if (isset($_GET['id'])) $id = $_GET['id'];
 if (isset($_POST['id'])) $id = $_POST['id'];
 
+var_dump($id);
 
 
     if ( !empty($_POST) ) {
