@@ -14,25 +14,23 @@ if ( isset($_GET['id']) | isset($_POST['id']) ) {
 if (isset($_GET['id'])) $id = $_GET['id'];
 if (isset($_POST['id'])) $id = $_POST['id'];
 
-var_dump($id);
 
 
     if ( !empty($_POST) ) {
-        var_dump($_POST);
+
+        $carte = Carte::getFromId($id)->fetch();
 
         Eleve::edit($_POST['id'], $_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['lycee'], $_POST['add'],$_POST['ville'], $_POST['cp'], 
                     $_POST['email'], $_POST['sexe'], $_POST['date_naiss']);
 
-        Carte::edit($_POST['id'], $_POST['num_carte'], $_POST['etat']);
+        Carte::edit($carte->Num_Carte, $_POST['id'], $_POST['num_carte'], $_POST['etat']);
 
         Log::eleve_edit($_POST['id'], $_POST['num_carte']);
     }
 
-    $eleve = Eleve::getFromId($_GET['id']);
-    $eleve = $eleve[0];
+    $eleve = Eleve::getFromId($id)->fetch();
 
-    $carte = Carte::getFromId($_GET['id']);
-    $carte = $carte[0];
+    $carte = Carte::getFromId($id)->fetch();
 
 
 } else {
@@ -64,7 +62,7 @@ var_dump($id);
                             <td>Classe :</td>
                             <td>
                                 <select name="classe" id="classe">
-                                    <?php foreach (Promos::getAll() as $data) : ?>
+                                    <?php foreach (Promos::getAll()->fetchAll() as $data) : ?>
                                    
                                         <option value='<?= $data->id ?>' <?php if($eleve->id_Promo == $data->id) echo "selected"; ?> > <?= $data->Nom ?> </option>
                                     <?php endforeach; ?>
@@ -75,7 +73,7 @@ var_dump($id);
                             <td>Lycee :</td>
                             <td>
                                 <select name="lycee" id="lycee">
-                                    <?php foreach (Lycee::getAll() as $data) : ?>
+                                    <?php foreach (Lycee::getAll()->fetchAll() as $data) : ?>
                                         <option value='<?= $data->id ?>' <?php if($eleve->id_Lycee == $data->id) echo "selected"; ?> > <?= $data->Lycee ?> </option>
                                     <?php endforeach; ?>
                                 </select>

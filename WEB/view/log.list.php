@@ -58,7 +58,6 @@ use Coac\Table\Html;
                 <td>Prenom</td>
                 <td>Classe</td>
                 <td>Date</td>
-                <td>Numero de carte</td>
                 <td>Evénement</td>
             </tr>
         </thead>
@@ -85,13 +84,13 @@ use Coac\Table\Html;
                         <td><?= $data->Nom_Promo ?></td>
                         <td><?= $data->Date ?></td>
 
-<?php                   if(!isset($data->Num_Carte)){
+<?php /*                  if(!isset($data->Num_Carte)){
 ?>                          <td><?= '' ?></td>
 
 <?php                   } else {
 ?> 
                         <td><?= $data->Num_Carte ?></td>
-<?php                   }
+<?php                   }*/
 ?>
                         <td><?= $data->Evenement ?></td>
                         

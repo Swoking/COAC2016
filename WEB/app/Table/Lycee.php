@@ -18,28 +18,29 @@ class Lycee
 
     public static function getAll(){
         $db = new \Coac\Database();
-        return $db->query("SELECT * FROM Lycee", 'Coac\Table\Lycee');
+        return $db->query("SELECT * FROM Lycee");
     }
 
-   /* public static function update($id, $entree, $sortie, $name, $filiere){
-        $db = new \Coac\Database('COAC');
-        return $db->query(" * FROM Promos", 'Coac\Table\Promos');
-    } */
+    public static function getFromId($id){
+        $db = new \Coac\Database();
+        return $db->query("SELECT * FROM Lycee WHERE id = ?", [$id]);
+    }
+
 
     public static function delete($id){
         $db = new \Coac\Database();
-        $db->query("DELETE FROM Lycee WHERE id = $id", 'Coac\Table\Lycee');
+        $db->query("DELETE FROM Lycee WHERE id = ?", [$id]);
     }
 
     public static function add($lycee){
         $db = new \Coac\Database();
         $db->query( "INSERT INTO Lycee (`id`, `Lycee`) 
-                    VALUES (NULL, '$lycee');", 'Coac\Table\Lycee'); 
+                    VALUES (NULL, ?);", [$lycee]); 
     }
 
     public static function edit($id, $lycee){
         $db = new \Coac\Database();
-        $db->query("UPDATE Lycee SET Lycee = '$lycee' WHERE id = '$id' ", '\Coac\Table\Lycee');
+        $db->query("UPDATE Lycee SET Lycee = ? WHERE id = ? ", [$lycee, $id]);
     }
 
     
@@ -54,9 +55,9 @@ class Lycee
 
     public static function deleteButton($id){
         $db = new \Coac\Database();
-	$name = $db->query("SELECT Lycee FROM Lycee WHERE id = " . $id, '\Coac\Table\Lycee');
+	$name = $db->query("SELECT Lycee FROM Lycee WHERE id = ?", [$id])->fetch();
         $html = "<a href='?p=lycee.delete&id=" . $id . "' ";
-        $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name[0]->Lycee/* . $liste->Nom $liste->prenom*/ . "'));\">";
+        $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name->Lycee/* . $liste->Nom $liste->prenom*/ . "'));\">";
         $html .= "<img src='img/supprime.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
         return $html .= "</a>";
     }

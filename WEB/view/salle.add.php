@@ -1,10 +1,9 @@
 <?php
-use Coac\Table\Salle;
+use \Coac\Table\Salle;
 use \Coac\Table\Log;
 
 
 if ( !empty($_POST) ) {
-    var_dump($_POST);
     Salle::add($_POST['name']);
 
     Log::salle_add($_POST['name']);

@@ -5,7 +5,7 @@ use Coac\Table\Promos;
 
     <h1>&mdash; Liste des classes &mdash;</h1>
     
-    <button onclick="self.location.href='?p=promos.add'">Nouvelle classe</button>
+    <button onclick="self.location.href='?p=promos.add'">Ajouter une classe</button>
 
     <table>
         <thead>

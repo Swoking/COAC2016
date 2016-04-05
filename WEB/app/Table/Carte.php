@@ -21,8 +21,8 @@ class Carte
 		$db = new \Coac\Database();
 		return $db->query("	SELECT Etudiant.id,Etudiant.Nom,Etudiant.Prenom,Carte.Num_Carte,Carte.id as id_Carte,Carte.id_Etudiant, Carte.Etat
 							FROM Etudiant,Carte 
-							WHERE id_Promo = $id 
-							AND Carte.id_Etudiant = Etudiant.id");
+							WHERE id_Promo = ? 
+							AND Carte.id_Etudiant = Etudiant.id", [$id]);
 	}
 
 	static function getFromId($id)
@@ -37,16 +37,24 @@ class Carte
         return $db->query("SELECT * FROM Carte WHERE id = ?", [$id]);
     }
 
-    public static function edit($id, $num_carte, $etat){
+    public static function edit($ex_num ,$id, $num_carte, $etat){
     	$db = new \Coac\Database();
+
     	$db->query("UPDATE Carte SET Num_Carte = ?,
-                                       		Etat = ? WHERE id_Etudiant = ?", [$num_carte, $etat, $id]);
+                                     Etat = ? 
+                                     WHERE id_Etudiant = ?
+                                     AND Num_Carte = ?", [$num_carte, $etat, $id, $ex_num]);
     }
 
     public static function add($eleve_id, $num_carte, $etat){
     	$db = new \Coac\Database();
 
-        $db->query("INSERT INTO Carte VALUES (NULL, ?, ?, ?) ", [$etat, $num_carte, $eleve_id]);
+        if($db->query("INSERT INTO Carte VALUES (NULL, ?, ?, ?) ", [$etat, $num_carte, $eleve_id])){
+
+        return true ;
+        }
+
+        return false ;
 
     }
 
@@ -58,7 +66,7 @@ class Carte
 
     public static function modif_etat($id, $etat){
         $db = new \Coac\Database();
-        $db->query("UPDATE Carte SET Etat = '$etat' WHERE id = $id", 'Coac\Table\Carte');
+        $db->query("UPDATE Carte SET Etat = '$etat' WHERE id = ?", [$id]);
     }
 
     public static function deleteButton($id, $idCarte){

@@ -1,6 +1,5 @@
 <?php
 use Coac\Table\Promos;
-use Coac\Table\Html;
 use Coac\Table\Eleve;
 use Coac\Table\Carte;
 
@@ -12,13 +11,17 @@ else { $id = null; }
 
     <h1>&mdash; Liste des cartes &mdash;</h1>
 
+    <button onclick="self.location.href='?p=carte.add'">Ajouter une carte</button>
+
+</br>
+
 
     <form method='GET' action="">
         <input type="hidden" name="p" value="carte.list">
         <select name='classe'>
             <?php if ($id == null) echo "<option name='classe' value='0'"; if($id == null) echo 'selected'; if ($id == null) echo ">Choisir une classe</option>";?>
             <?php foreach (Promos::getAll() as $data) : ?>
-                <option value='<?= $data->id ?>' <?php if($id == $data->id) echo "selected"; ?> > <?= $data->Nom?> </option>";
+                <option value='<?= $data->id ?>' <?php if($id == $data->id) echo "selected"; ?> > <?= $data->Nom ?> </option>;
             <?php endforeach; ?>
         </select>
         <input type="Submit" value="Selectionner">

@@ -1,5 +1,6 @@
 <?php
 use \Coac\Table\Lycee;
+use \Coac\Table\Log;
 
 if ( isset($_GET['id']) | isset($_POST['id']) ) {
 
@@ -7,17 +8,15 @@ if (isset($_GET['id'])) $id = $_GET['id'];
 if (isset($_POST['id'])) $id = $_POST['id'];
 
     if ( !empty($_POST) ) {
-        var_dump($_POST);
+        $lycee = Lycee::getFromId($id)->fetch();
 
 
+        Lycee::edit($id, $_POST['lycee']);
+        Log::lycee_edit($lycee->Lycee, $_POST['lycee']);
 
-
-
-        Lycee::edit($_POST['id'], $_POST['lycee']);
     }
 
-    $lycee = $db->query('SELECT * FROM Lycee WHERE id = ' . $_GET['id'], '\Coac\Table\Lycee');
-    $lycee = $lycee[0];
+    $lycee = Lycee::getFromId($id)->fetch();
 } else {
    header("Location: http://" . PUBLIC_DIR . "/?p=lycee.list");
 }

@@ -29,7 +29,7 @@ class Eleve
         return $db->query("SELECT id, Nom, Prenom FROM Etudiant WHERE id_Promo = ?", [$id]);
     }
 
-    static function getAllIdEleve($nom, $prenom, $classe)
+    static function getIdEleve($nom, $prenom, $classe)
     {
         $db = new \Coac\Database();
         return $db->query("SELECT id FROM Etudiant WHERE Nom = ? 
@@ -50,11 +50,14 @@ class Eleve
 
     public static function add($nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss) {
         $db = new \Coac\Database();
-        $db->query("INSERT INTO Etudiant(`id`, `Nom`, `Prenom`, `id_Promo`, `id_Lycee`, `Adresse`, `Ville`, `CP`, `Email`, `Sexe`, `Date_Naissance`, `Image`) 
+        if ($db->query("INSERT INTO Etudiant(`id`, `Nom`, `Prenom`, `id_Promo`, `id_Lycee`, `Adresse`, `Ville`, `CP`, `Email`, `Sexe`, `Date_Naissance`, `Image`) 
                                 VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL) ",
-                  [$nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss]);
+                  [$nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss])){
+            
+        return true ;
+        }
 
-        
+        return false ;
     }
 
     public static function edit($id, $nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss){

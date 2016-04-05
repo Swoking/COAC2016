@@ -8,16 +8,21 @@ use \Coac\Table\Carte;
 
 
 if ( !empty($_POST) ) {
-    Eleve::add($_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['lycee'], $_POST['add'], $_POST['ville'], $_POST['cp'],
+    $test_eleve = Eleve::add($_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['lycee'], $_POST['add'], $_POST['ville'], $_POST['cp'],
     $_POST['email'], $_POST['sexe'], $_POST['date_naiss']);
 
-    $id = Eleve::getIdEleve($_POST['nom'], $_POST['prenom'], $_POST['classe']);
+    $id = Eleve::getIdEleve($_POST['nom'], $_POST['prenom'], $_POST['classe'])->fetch();
 
-    var_dump($id);
+    $test_carte = Carte::add($id->id, $_POST['num_carte'], $_POST['etat']); 
 
-    Carte::add($id, $_POST['num_carte'], $_POST['etat']); 
+    Log::eleve_add($id->id, $_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['num_carte']);
 
-    Log::eleve_add($_POST['id'], $_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['num_carte']);
+if($test_eleve == true){ ?> Ajout de l'élève réussi <?php }
+else{ ?> L'ajout de l'élève a échoué <?php }
+
+if($test_carte == true){ ?> Ajout de la carte réussi <?php }
+else{ ?> L'ajout de la carte a échoué <?php }
+
 }
 
 ?>
@@ -86,7 +91,7 @@ if ( !empty($_POST) ) {
                             </td>
                         </tr>
                         <tr>
-                            <td>Date de naissance :</td>
+                            <td>Date de naissance (aaaa/mm/jj) :</td>
                             <td><input type="text" name="date_naiss" value=""></td>
                         </tr>
                         <tr>

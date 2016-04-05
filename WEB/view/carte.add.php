@@ -8,10 +8,14 @@ use \Coac\Table\Log;
 
 
 if ( !empty($_POST) ) {
-    var_dump($_POST);
 
-    Carte::add($_POST['eleve_id'], $_POST['num_carte'], $_POST['etat']);
+    $test_carte = Carte::add($_POST['eleve_id'], $_POST['num_carte'], $_POST['etat']);
     Log::carte_add($_POST['eleve_id'], $_POST['num_carte']);
+
+
+if($test_carte == true){ ?> Ajout de la carte réussi <?php }
+else{ ?> L'ajout de la carte a échoué <?php }
+
 }
 
 ?>

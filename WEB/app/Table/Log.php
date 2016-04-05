@@ -8,7 +8,7 @@ class Log
 {
     public static function getAll(){
         $db = new \Coac\Database();
-        return $db->query("SELECT Etudiant.Nom as Nom_Etudiant, Prenom, Promo.Nom as Nom_Promo, Journalisation.Date, Evenement 
+        return $db->query("SELECT Etudiant.Nom as Nom_Etudiant, Prenom, Promo.Nom as Nom_Promo,  Journalisation.Date, Evenement 
                         FROM Journalisation,Etudiant,Promo
         				WHERE  Etudiant.id =  Journalisation.id_Etudiant
         				AND Etudiant.id_Promo = Promo.id
@@ -34,7 +34,8 @@ class Log
 
     public static function getAllWithId($idEleve){
         $db = new \Coac\Database();
-        return $db->query("SELECT Etudiant.Nom as Nom_Etudiant, Prenom, Promo.Nom as Nom_Promo, Journalisation.Date, Evenement FROM Journalisation,Etudiant,Promo
+        return $db->query("SELECT Etudiant.Nom as Nom_Etudiant, Prenom, Promo.Nom as Nom_Promo,  Journalisation.Date, Evenement 
+                        FROM Journalisation,Etudiant,Promo
         				WHERE  Etudiant.id =  Journalisation.id_Etudiant
         				AND Etudiant.id_Promo = Promo.id
         				AND Etudiant.id = ?
@@ -44,7 +45,8 @@ class Log
 
     public static function getAllWithIdClasse($idClasse){
         $db = new \Coac\Database();
-        return $db->query("SELECT Etudiant.Nom as Nom_Etudiant, Prenom, Promo.Nom as Nom_Promo, Journalisation.Date, Evenement FROM Journalisation,Etudiant,Promo
+        return $db->query("SELECT Etudiant.Nom as Nom_Etudiant, Prenom, Promo.Nom as Nom_Promo, Journalisation.Date, Evenement 
+                        FROM Journalisation,Etudiant,Promo, Carte
                         WHERE  Etudiant.id =  Journalisation.id_Etudiant
                         AND Etudiant.id_Promo = Promo.id
                         AND Promo.id = ?
@@ -82,7 +84,7 @@ class Log
     public static function promos_add($name){
         $db = new \Coac\Database();
 
-        $evenement = "Ajout de la classe ".$name ;
+        $evenement = "Ajout de la classe $name" ;
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
 
@@ -92,16 +94,16 @@ class Log
         $db = new \Coac\Database();
 
         $name = $db->query("SELECT Nom FROM Promo WHERE id = ?", [$id]);
-        $evenement = "Suppression de la classe ".$name ;
+        $evenement = "Suppression de la classe $name" ;
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
-    public static function promos_edit($name){
+    public static function promos_edit($name_anc, $name_new){
         $db = new \Coac\Database();
 
-        $evenement = "Modification des informations de la classe ".$name ;
+        $evenement = "Modification du nom de la classe $name_anc en $name_new" ;
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
 
@@ -110,7 +112,15 @@ class Log
     public static function lycee_add($name){
         $db = new \Coac\Database();
 
-        $evenement = "Ajout du lycee ".$name ;
+        $evenement = "Ajout du lycee $name" ;
+
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+    }
+
+    public static function lycee_edit($name_anc, $name_new){
+        $db = new \Coac\Database();
+
+        $evenement = "Modification du lycee $name_anc en $name_new" ;
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
     }
@@ -118,7 +128,7 @@ class Log
     public static function lycee_delete($name){
         $db = new \Coac\Database();
 
-        $evenement = "Suppression du lycee ".$name ;
+        $evenement = "Suppression du lycee $name ";
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
     }
@@ -126,10 +136,14 @@ class Log
     public static function carte_add($id, $num_carte){
         $db = new \Coac\Database();
 
-        $nom = $db->query("SELECT Nom FROM Etudiant WHERE id_Carte = ?", [$id]);
-        $prenom = $db->query("SELECT Prenom FROM Etudiant WHERE id_Carte = ?", [$id]);
+        $data = $db->query("SELECT Nom,Prenom FROM Etudiant WHERE id = ?", [$id])->fetch();
+        $nom = $data->Nom;
+        $prenom = $data->Prenom;
 
-        $evenement = "Ajout d'une carte appartenant à" .$prenom." ".$nom ;
+        var_dump($nom);
+        var_dump($prenom);
+
+        $evenement = "Ajout d'une carte appartenant à $prenom $nom ";
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, ?, ?, NOW(), ?)", [$id, $num_carte, $evenement]);
 
@@ -138,26 +152,26 @@ class Log
     public static function carte_statut($id, $num_carte, $prenom, $nom){
         $db = new \Coac\Database();
 
-        $evenement = "Modification de l'état de la carte appartenant à l\'élève" . $prenom ." ". $nom;
+        $evenement = "Modification de l'état de la carte appartenant à l'élève $prenom $nom ";
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
 
-    public static function salle_add($nom){
+    public static function salle_add($name){
         $db = new \Coac\Database();
 
-        $evenement = "Ajout de la salle" .$name ;
+        $evenement = "Ajout de la salle $name" ;
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
-    public static function salle_edit($name){
+    public static function salle_edit($name_anc, $name_new){
         $db = new \Coac\Database();
 
-        $evenement = "Modification des informations de la salle" .$name ;
+        $evenement = "Modification du nom de la salle $name_anc en $name_new" ;
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
 

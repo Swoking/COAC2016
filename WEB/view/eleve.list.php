@@ -28,9 +28,6 @@ else { $id = null; }
 
     <table>
 <?php foreach (Eleve::getAll($id) as $data) : ?>
-    <?php var_dump($data->id); ?>
-    <?php var_dump($data->Nom); ?>
-    <?php var_dump($data->Prenom); ?>
         <tr>
             <td><?= $data->Nom ?></td>
             <td><?= $data->Prenom ?></td>

@@ -9,15 +9,15 @@ if (isset($_GET['id'])) $id = $_GET['id'];
 if (isset($_POST['id'])) $id = $_POST['id'];
 
     if ( !empty($_POST) ) {
-        var_dump($_POST);
+
+        $classe = Promos::getFromId($id)->fetch();
 
         Promos::edit($_POST['id'], $_POST['entree'], $_POST['sortie'], $_POST['name'], $_POST['filiere']);
 
-        Log::promos_edit($_POST['name']);
+        Log::promos_edit($classe->Nom, $_POST['name']);
     }
 
-    $classe = Promos::getFromId($_GET['id']);
-    $classe = $classe[0];
+    $classe = Promos::getFromId($id)->fetch();
 } else {
    header("Location: http://" . PUBLIC_DIR . "/?p=promos.list");
 }

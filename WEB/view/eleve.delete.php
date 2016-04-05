@@ -10,7 +10,7 @@ $id = $_GET['id'];
 foreach ( Eleve::getFromId($_GET['id']) as $data ) {
 	$eleve = $data;
 	$find = true ;
-    Eleve::delete( $data->id );// supression de l'élève
+    //Eleve::delete( $data->id );// supression de l'élève
     Log::eleve_delete( $data->id);
 }        
 

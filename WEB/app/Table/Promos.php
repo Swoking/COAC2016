@@ -58,9 +58,9 @@ class Promos
 
     public static function deleteButton($id){
         $db = new \Coac\Database();
-	    $name = $db->query("SELECT Nom FROM Promo WHERE id = ?", [$id]);
+	    $name = $db->query("SELECT Nom FROM Promo WHERE id = ?", [$id])->fetch();
         $html = "<a href='?p=promos.delete&id=" . $id . "' ";
-        $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name[0]->Nom/* . $liste->Nom $liste->prenom*/ . "'));\">";
+        $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name->Nom/* . $liste->Nom $liste->prenom*/ . "'));\">";
         $html .= "<img src='img/supprime.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
         return $html .= "</a>";
     }

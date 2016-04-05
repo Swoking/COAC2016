@@ -11,8 +11,6 @@ use Coac\Table\Salle;
         
             <?php foreach(Salle::getAll() as $data): ?>
 
-            <?php var_dump($data); ?>
-
                 <tr>
                     <td><?= $data->Nom ?></td>
                     <td>

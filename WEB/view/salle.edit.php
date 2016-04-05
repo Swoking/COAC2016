@@ -9,15 +9,16 @@ if (isset($_GET['id'])) $id = $_GET['id'];
 if (isset($_POST['id'])) $id = $_POST['id'];
 
     if ( !empty($_POST) ) {
-        var_dump($_POST);
 
-        Salle::edit($_POST['id'], $_POST['name']);
+        $salle = Salle::getFromId($id)->fetch();
 
-        Log::promos_edit($_POST['name']);
+
+        Salle::edit($id, $_POST['name']);
+
+        Log::promos_edit($salle->Nom, $_POST['name']);
     }
 
-    $salle = Salle::getFromId($_GET['id']);
-    $salle = $salle[0];
+    $salle = Salle::getFromId($id)->fetch();
 } else {
    header("Location: http://" . PUBLIC_DIR . "/?p=salle.list");
 }
