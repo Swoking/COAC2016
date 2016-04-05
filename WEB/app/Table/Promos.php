@@ -17,33 +17,33 @@ class Promos
     }*/
 
     public static function getAll(){
-        $db = new \Coac\Database('COAC2016');
-        return $db->query("SELECT * FROM Promo", 'Coac\Table\Promos');
+        $db = new \Coac\Database();
+        return $db->query("SELECT * FROM Promo");
     }
 
    static function getFromId($id)
     {
-        $db = new \Coac\Database('COAC2016');
-        return $db->query('SELECT * FROM Promo WHERE id = ' . $_GET['id'], '\Coac\Table\Promos');
+        $db = new \Coac\Database();
+        return $db->query('SELECT * FROM Promo WHERE id = ?', [$id]);
     }
 
     public static function delete($id){
-        $db = new \Coac\Database('COAC2016');
-        $db->query("DELETE FROM Promo WHERE id = $id", 'Coac\Table\Promos');
+        $db = new \Coac\Database();
+        $db->query("DELETE FROM Promo WHERE id = ?", [$id]);
     }
 
     public static function add($entree, $sortie, $name, $filiere){
-        $db = new \Coac\Database('COAC2016');
-        $db->query( "INSERT INTO `COAC2016`.`Promo` (`id`, `Entree`, `Sortie`, `Nom`, `Filiere`) 
-                    VALUES (NULL, '$entree', '$sortie', '$name', '$filiere');", 'Coac\Table\Promos'); 
+        $db = new \Coac\Database();
+        $db->query( "INSERT INTO Promo (`id`, `Entree`, `Sortie`, `Nom`, `Filiere`) 
+                    VALUES (NULL, ?, ?, ?, ?);", [$entree, $sortie, $name, $filiere]); 
     }
 
     public static function edit($id, $entree, $sortie, $name, $filiere){
-        $db = new \Coac\Database('COAC2016');
-        $db->query("UPDATE Promo SET            Entree = '$entree',
-                                                Sortie = '$sortie',
-                                                Nom = '$name',
-                                                Filiere = '$filiere' WHERE id = '$id' ", '\Coac\Table\Promos');
+        $db = new \Coac\Database();
+        $db->query("UPDATE Promo SET            Entree = ?,
+                                                Sortie = ?,
+                                                Nom = ?,
+                                                Filiere = ? WHERE id = ? ", [$entree, $sortie, $name, $filiere, $id]);
     }
 
     
@@ -57,8 +57,8 @@ class Promos
     }
 
     public static function deleteButton($id){
-        $db = new \Coac\Database('COAC2016');
-	$name = $db->query("SELECT Nom FROM Promo WHERE id = " . $id, '\Coac\Table\Promos');
+        $db = new \Coac\Database();
+	    $name = $db->query("SELECT Nom FROM Promo WHERE id = ?", [$id]);
         $html = "<a href='?p=promos.delete&id=" . $id . "' ";
         $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name[0]->Nom/* . $liste->Nom $liste->prenom*/ . "'));\">";
         $html .= "<img src='img/supprime.png' border='0' width='20' height='20' value=" /* . $liste->id*/ . "  name ='suppr' />";
@@ -89,7 +89,7 @@ class Promos
 	 */
 	public static function getIdClasse()
 	{
-		$db = new \Coac\Database('COAC2016');
+		$db = new \Coac\Database();
 		foreach ($db->query("SELECT * FROM Classe", 'Coac\Table\Eleve') as $classe) { // parcoure toute les classe
 			if ($classe->Nom === $_GET['classe']) return $classe->id; // si Nom de la classe est == a la classe en URL alors retourne sont ID
 		}

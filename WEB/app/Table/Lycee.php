@@ -17,7 +17,7 @@ class Lycee
     }*/
 
     public static function getAll(){
-        $db = new \Coac\Database('COAC2016');
+        $db = new \Coac\Database();
         return $db->query("SELECT * FROM Lycee", 'Coac\Table\Lycee');
     }
 
@@ -27,18 +27,18 @@ class Lycee
     } */
 
     public static function delete($id){
-        $db = new \Coac\Database('COAC2016');
+        $db = new \Coac\Database();
         $db->query("DELETE FROM Lycee WHERE id = $id", 'Coac\Table\Lycee');
     }
 
     public static function add($lycee){
-        $db = new \Coac\Database('COAC2016');
-        $db->query( "INSERT INTO `COAC2016`.`Lycee` (`id`, `Lycee`) 
+        $db = new \Coac\Database();
+        $db->query( "INSERT INTO Lycee (`id`, `Lycee`) 
                     VALUES (NULL, '$lycee');", 'Coac\Table\Lycee'); 
     }
 
     public static function edit($id, $lycee){
-        $db = new \Coac\Database('COAC2016');
+        $db = new \Coac\Database();
         $db->query("UPDATE Lycee SET Lycee = '$lycee' WHERE id = '$id' ", '\Coac\Table\Lycee');
     }
 
@@ -53,7 +53,7 @@ class Lycee
     }
 
     public static function deleteButton($id){
-        $db = new \Coac\Database('COAC2016');
+        $db = new \Coac\Database();
 	$name = $db->query("SELECT Lycee FROM Lycee WHERE id = " . $id, '\Coac\Table\Lycee');
         $html = "<a href='?p=lycee.delete&id=" . $id . "' ";
         $html .= "onclick=\"return(confirm('Confirmer la suppression de :\\n\\n" . $name[0]->Lycee/* . $liste->Nom $liste->prenom*/ . "'));\">";
@@ -85,8 +85,8 @@ class Lycee
 	 */
 	public static function getIdClasse()
 	{
-		$db = new \Coac\Database('COAC2016');
-		foreach ($db->query("SELECT * FROM Classe", 'Coac\Table\Eleve') as $classe) { // parcoure toute les classe
+		$db = new \Coac\Database();
+		foreach ($db->query("SELECT * FROM Classe") as $classe) { // parcoure toute les classe
 			if ($classe->Nom === $_GET['classe']) return $classe->id; // si Nom de la classe est == a la classe en URL alors retourne sont ID
 		}
 		return NULL; // retourne NULL si pas de classe sélétioner
