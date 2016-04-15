@@ -59,7 +59,7 @@ class Carte
     }
 
     public static function carteButton($id){
-        $html = "<a href='?p=pdf.carte&id=" . $id . "' />";
+        $html = "<a href='../public/pdf.carte.php?id=" . $id . "' />";
         $html .= "<img src='img/logoCarte.jpg' border='0' width='20' height='20' value='75'>";
         return $html .= "</a>";
     }
