@@ -57,17 +57,17 @@ class Log
 
         $evenement = "Ajout de la classe $name" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
     public static function promos_delete($id){
         $db = new \Coac\Database();
 
-        $name = $db->query("SELECT Nom FROM Promo WHERE id = ?", [$id]);
+        $name = $db->query("SELECT Nom FROM Promo WHERE id = ?", [$id])->fetch();
         $evenement = "Suppression de la classe $name" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
@@ -76,7 +76,7 @@ class Log
 
         $evenement = "Modification du nom de la classe $name_anc en $name_new" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
@@ -85,7 +85,7 @@ class Log
 
         $evenement = "Ajout du lycee $name" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
     }
 
     public static function lycee_edit($name_anc, $name_new){
@@ -93,7 +93,7 @@ class Log
 
         $evenement = "Modification du lycee $name_anc en $name_new" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
     }
 
     public static function lycee_delete($name){
@@ -101,7 +101,7 @@ class Log
 
         $evenement = "Suppression du lycee $name ";
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
     }
 
     public static function carte_add($id){
@@ -111,18 +111,27 @@ class Log
         $nom = $data->Nom;
         $prenom = $data->Prenom;
 
-        $evenement = "Ajout d'une carte appartenant à $prenom $nom "; //num_carte
+        $evenement = "Ajout d'une carte appartenant à $nom $prenom "; //num_carte
 
         $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
-    public static function carte_statut($id, $num_carte, $prenom, $nom){
+    public static function carte_statut($num_carte, $prenom, $nom){
         $db = new \Coac\Database();
 
-        $evenement = "Modification de l'état de la carte appartenant à l'élève $prenom $nom ";
+        $evenement = "Modification de l'état de la carte appartenant à l'élève $nom $prenom ";
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
+
+    }
+
+        public static function carte_rendue($nom, $prenom){
+        $db = new \Coac\Database();
+
+        $evenement = "La carte de l'élève $nom $prenom a été rendue";
+
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
@@ -132,7 +141,7 @@ class Log
 
         $evenement = "Ajout de la salle $name" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
@@ -141,8 +150,15 @@ class Log
 
         $evenement = "Modification du nom de la salle $name_anc en $name_new" ;
 
-        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NULL, NOW(), ?)", [$evenement]);
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
 
     }
 
+    public static function salle_delete($name){
+        $db = new \Coac\Database();
+
+        $evenement = "Suppression de la salle $name ";
+
+        $db->query("INSERT INTO Journalisation VALUES (NULL, NULL, NOW(), ?)", [$evenement]);
+    }
 }

@@ -1,5 +1,8 @@
 <?php
 namespace Coac\Table;
+use Coac\Table\Eleve;
+use Coac\Table\Log;
+
 
 /**
 * 
@@ -29,6 +32,14 @@ class Promos
 
     public static function delete($id){
         $db = new \Coac\Database();
+
+        foreach (Eleve::getAll($id) as $data){
+
+        Eleve::delete( $data->id, $data->Nom, $data->Prenom );// supression de l'élève
+        Log::eleve_delete($data->Nom, $data->Prenom);
+
+        }
+
         $db->query("DELETE FROM Promo WHERE id = ?", [$id]);
     }
 

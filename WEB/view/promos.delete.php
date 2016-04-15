@@ -14,6 +14,7 @@ foreach( Promos::getAll() as $data ) {
         $promos = $data; // copie de la classe dans une variable
         Promos::delete( $data->id );// supression de la classe
         Log::promos_delete( $data->id );
+        Log::carte_rendue( $data->id );
 
         break;
     }

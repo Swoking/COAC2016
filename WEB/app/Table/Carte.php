@@ -31,6 +31,8 @@ class Carte
         return $db->query('SELECT * FROM Carte WHERE id_Etudiant = ?', [$id]);
     }
 
+
+
     static function getFromIdCarte($id)
     {
         $db = new \Coac\Database();

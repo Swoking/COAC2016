@@ -1,5 +1,8 @@
 <?php
 namespace Coac\Table;
+use Coac\Table\Carte;
+use Coac\Table\Log;
+
 
 /**
 * 
@@ -43,9 +46,22 @@ class Eleve
         return $db->query("SELECT * FROM Etudiant WHERE id = ?", [$id]);
     }
 
-    public static function delete($id){
+    public static function delete($id, $nom, $prenom){
         $db = new \Coac\Database();
-        $db->query("DELETE FROM Etudiant WHERE id = ?", [$id]);
+        $db->query("UPDATE Etudiant SET id_Promo = '0' WHERE id = ?", [$id]);
+
+        $etat = "Rendu" ;
+
+        foreach (Carte::getFromId($id) as $data){
+
+        $db->query("UPDATE Carte SET Etat = '$etat' WHERE id = ?", [$id]);
+
+        Log::carte_rendue($nom, $prenom );
+
+        }
+
+
+
     }
 
     public static function add($nom, $prenom, $classe, $lycee, $add, $ville, $cp, $email, $sexe, $date_naiss) {
