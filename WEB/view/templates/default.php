@@ -30,13 +30,17 @@
             <!-- /HEADER -->
             <!-- MENU -->
             <menu id="menu">
-                <li><a href="#"><img src="img/exit.png" align="top" width="30px" height="30px" title="Se déconnecter"></a></li>
+                <li><a href="?p=connexion.logout"><img src="img/exit.png" align="top" width="30px" height="30px" title="Se déconnecter"></a></li>
                 <li><p></p></li>
                 <li><a href="?p=home">Accueil</a></li>
-                <li><a href="?p=eleve.add">Inscription</a></li>
                 <li><a href="?p=eleve.list">Liste des élèves</a></li>
-                <li><a href="?p=promo.list">Liste des classes</a></li>
+                <li><a href="?p=promos.list">Liste des classes</a></li>
+                <li><a href="?p=carte.list">Liste des cartes</a></li>
                 <li><a href="?p=log.list">Liste des logs</a></li>
+                <li><a href="?p=lycee.list">Liste des lycées</a></li>
+                <li><a href="?p=salle.list">Liste des salles</a></li>
+
+
             </menu>
             <!-- /MENU -->
         </center>
