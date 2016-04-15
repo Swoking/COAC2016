@@ -2,6 +2,9 @@
 use \Coac\Table\Lycee;
 use \Coac\Table\Log;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 $find = false; // controle si une classe est trouvée
 $lycee = NULL;
 
@@ -26,3 +29,9 @@ if ( !$find ) { // si pas de lycee corespondant
 <center>
     <h1>&mdash; Suppression du Lycee <?= $lycee->Lycee; ?> <?php if($find)echo'/'; ?> &mdash;</h1>
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

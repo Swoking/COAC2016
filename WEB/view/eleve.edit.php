@@ -5,9 +5,8 @@ use \Coac\Table\Eleve;
 use \Coac\Table\Carte;
 use \Coac\Table\Log;
 
-
-
-
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 if ( isset($_GET['id']) | isset($_POST['id']) ) {
 
@@ -25,7 +24,7 @@ if (isset($_POST['id'])) $id = $_POST['id'];
 
         Carte::edit($carte->Num_Carte, $_POST['id'], $_POST['num_carte'], $_POST['etat']);
 
-        Log::eleve_edit($_POST['id'], $_POST['num_carte']);
+        Log::eleve_edit($_POST['nom'], $_POST['prenom']);
     }
 
     $eleve = Eleve::getFromId($id)->fetch();
@@ -139,3 +138,9 @@ if (isset($_POST['id'])) $id = $_POST['id'];
     </form>
     
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

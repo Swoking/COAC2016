@@ -1,5 +1,9 @@
 <?php
 use Coac\Table\Salle;
+
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 ?>
 <center>
 
@@ -22,3 +26,9 @@ use Coac\Table\Salle;
     
     </table>
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

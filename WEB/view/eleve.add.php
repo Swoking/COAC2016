@@ -5,7 +5,8 @@ use \Coac\Table\Lycee;
 use \Coac\Table\Log;
 use \Coac\Table\Carte;
 
-
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 if ( !empty($_POST) ) {
     $test_eleve = Eleve::add($_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['lycee'], $_POST['add'], $_POST['ville'], $_POST['cp'],
@@ -15,7 +16,7 @@ if ( !empty($_POST) ) {
 
     $test_carte = Carte::add($id->id, $_POST['num_carte'], $_POST['etat']); 
 
-    Log::eleve_add($id->id, $_POST['nom'], $_POST['prenom'], $_POST['classe'], $_POST['num_carte']);
+    Log::eleve_add($_POST['nom'], $_POST['prenom']);
 
 if($test_eleve == true){ ?> Ajout de l'élève réussi <?php }
 else{ ?> L'ajout de l'élève a échoué <?php }
@@ -113,3 +114,9 @@ else{ ?> L'ajout de la carte a échoué <?php }
     </form>
     
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

@@ -1,5 +1,9 @@
 <?php
 use Coac\Table\Promos;
+
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 ?>
 <center>
 
@@ -31,3 +35,9 @@ use Coac\Table\Promos;
     </table>
 
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

@@ -63,6 +63,12 @@ if ( $p === 'home' ) {
 
 } else if ( $p === 'log.list')		{ require '../view/log.list.php';
 
+} else if ( $p === 'connexion.verif')		{ require '../view/connexion.verif.php';
+} else if ( $p === 'connexion.add')		{ require '../view/connexion.add.php';
+} else if ( $p === 'connexion.logout')		{ require '../view/connexion.logout.php';
+
+
+
 } else {
 	require '404.php';
 }

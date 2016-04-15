@@ -1,6 +1,10 @@
 <?php
 use Coac\Table\Lycee;
 use Coac\Table\Html;
+
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 ?>
 <center>
 
@@ -28,3 +32,9 @@ use Coac\Table\Html;
     </table>
 
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

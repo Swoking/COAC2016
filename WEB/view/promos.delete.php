@@ -2,6 +2,8 @@
 use \Coac\Table\Promos;
 use \Coac\Table\Log;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 $find = false; // controle si une classe est trouvée
 $promos = NULL;
@@ -28,3 +30,9 @@ if ( !$find ) { // si pas de classe corespondante
 <center>
     <h1>&mdash; Suppression de la Promos <?= $promos->Nom; ?> <?= $promos->Entree; ?> <?php if($find)echo'/'; ?><?= $promos->Sortie; ?> &mdash;</h1>
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

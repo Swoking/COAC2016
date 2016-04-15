@@ -3,6 +3,9 @@ use Coac\Table\Promos;
 use Coac\Table\Eleve;
 use Coac\Table\Carte;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 if ( isset($_GET['classe']) ) {$id = $_GET['classe']; }
 else { $id = null; }
 ?>
@@ -60,3 +63,8 @@ else { $id = null; }
 
 
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+}
+?>

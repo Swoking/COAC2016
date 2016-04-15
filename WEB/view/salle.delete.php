@@ -2,6 +2,8 @@
 use \Coac\Table\Salle;
 use \Coac\Table\Log;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 $find = false; // controle si une salle est trouvée
 $salle = NULL;
@@ -28,3 +30,9 @@ if ( !$find ) { // si pas de salle corespondante
 <center>
     <h1>&mdash; Suppression de la salle <?= $salle->Nom; ?> &mdash;</h1>
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

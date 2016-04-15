@@ -2,6 +2,8 @@
 use \Coac\Table\Salle;
 use \Coac\Table\Log;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 if ( isset($_GET['id']) | isset($_POST['id']) ) {
 
@@ -40,3 +42,9 @@ if (isset($_POST['id'])) $id = $_POST['id'];
     </form>
     
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

@@ -2,6 +2,9 @@
 use Coac\Table\Promos;
 use \Coac\Table\Log;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 
 if ( !empty($_POST) ) {
     Promos::add( $_POST['entree'], $_POST['sortie'], $_POST['name'], $_POST['filiere'] );
@@ -37,3 +40,9 @@ if ( !empty($_POST) ) {
     </form>
     
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

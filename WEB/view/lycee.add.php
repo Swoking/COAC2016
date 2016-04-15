@@ -2,6 +2,9 @@
 use Coac\Table\Lycee;
 use \Coac\Table\Log;
 
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
+
 if ( !empty($_POST) ) {
     Lycee::add($_POST['lycee']);
     Log::lycee_add($_POST['lycee']);
@@ -23,3 +26,9 @@ if ( !empty($_POST) ) {
     </form>
     
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+    exit();
+}
+?>

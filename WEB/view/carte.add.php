@@ -5,7 +5,8 @@ use \Coac\Table\Lycee;
 use \Coac\Table\Carte;
 use \Coac\Table\Log;
 
-
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 if ( !empty($_POST) ) {
 
@@ -90,3 +91,8 @@ else{ ?> L'ajout de la carte a échoué <?php }
     </form>
     
 </center>
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+}
+?>

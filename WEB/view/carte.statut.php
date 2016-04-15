@@ -3,7 +3,8 @@ use \Coac\Table\Carte;
 use \Coac\Table\Eleve;
 use \Coac\Table\Log;
 
-
+session_start ();
+if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 $find = false; // controle si une carte est trouvé
 $carte = NULL;
@@ -40,4 +41,8 @@ foreach( Carte::getFromIdCarte($id_Carte) as $data ) {
 <center>
     <h1>&mdash; La carte de <?= $prenom." ".$nom." ".$affiche; ?>  &mdash;</h1>
 </center>
-
+<?php
+}else{
+    header ('location: ?p=connexion.verif');
+}
+?>
