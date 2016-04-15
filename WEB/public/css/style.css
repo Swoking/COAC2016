@@ -1,3 +1,55 @@
 table {
     
 }
+.carte-body{
+	height: 185px;
+	width: 320px;
+	background-color: white;
+	background-image: url(../img/CarteModele.png);
+	background-size: 320px 185px;
+	background-repeat: no-repeat;
+}
+
+.carte-bg{
+	position: absolute;
+	top: 24px;
+	left: 212px;
+	width: 100px;
+	height: 110px;
+}
+
+.carte-nom{
+	top: 81px;
+	left: 60px;
+	font-size: 7px;
+	position: absolute;
+}
+
+.carte-validite{
+	top: 100px;
+	left: 60px;
+	font-size: 7px;
+	position: absolute;
+}
+
+.carte-naissanse{
+	top: 120px;
+	left: 60px;
+	font-size: 7px;
+	position: absolute;
+}
+
+.carte-filiere{
+	top: 142px;
+	left: 60px;
+	font-size: 7px;
+	position: absolute;
+}
+
+.carte-tempon{
+	position: absolute;
+	top: 100px;
+	left: 150px;
+	width: 100px;
+	height: 50px;
+}
