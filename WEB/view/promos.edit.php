@@ -5,7 +5,6 @@ use \Coac\Table\Log;
 session_start ();
 if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
-    var_dump($_SESSION);
 
 if ( isset($_GET['id']) | isset($_POST['id']) ) {
 

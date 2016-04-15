@@ -10,7 +10,9 @@ if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
     <h1>&mdash; Liste des lycées &mdash;</h1>
     
-    <button onclick="self.location.href='?p=lycee.add'">Nouveau lycée</button>
+    <button onclick="self.location.href='?p=lycee.add'">Ajouter un lycée</button>
+
+    </br></br>
 
     <table>
         <thead>
@@ -24,7 +26,6 @@ if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
                     <td><?= $data->Lycee ?></td>
                     <td>
                         <?= Lycee::editButton( $data->id ) ?>
-                        <?= Lycee::deleteButton( $data->id ) ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

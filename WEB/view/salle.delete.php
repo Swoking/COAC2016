@@ -13,7 +13,7 @@ foreach( Salle::getAll() as $data ) {
         $find = true; // si salle trouvée : controle mis sur vrai (trouvée)
         $salle = $data; // copie de la salle dans une variable
         Salle::delete( $data->id );// supression de la salle
-        Log::salle_delete( $data->id );
+        Log::salle_delete( $data->Nom );
 
         break;
     }

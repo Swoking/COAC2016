@@ -10,12 +10,19 @@ if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
 if ( !empty($_POST) ) {
 
+
     $test_carte = Carte::add($_POST['eleve_id'], $_POST['num_carte'], $_POST['etat']);
     Log::carte_add($_POST['eleve_id'], $_POST['num_carte']);
-
+?>
+<center>
+<?php
 
 if($test_carte == true){ ?> Ajout de la carte réussi <?php }
 else{ ?> L'ajout de la carte a échoué <?php }
+
+?>
+</center>
+<?php
 
 }
 
@@ -43,7 +50,7 @@ else{ ?> L'ajout de la carte a échoué <?php }
                         </tr>
     </table>
 
-              <input type="Submit" value="Choisir" >              
+              <input type="Submit" value="Sélectionner" >              
 
     </form>
     <br/>

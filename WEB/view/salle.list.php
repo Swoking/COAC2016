@@ -9,7 +9,9 @@ if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
 
     <h1>&mdash; Liste des salles &mdash;</h1>
     
-    <button onclick="self.location.href='?p=salle.add'">Nouvelle salle</button>
+    <button onclick="self.location.href='?p=salle.add'">Ajouter une salle</button>
+
+    </br></br>
 
     <table>
         

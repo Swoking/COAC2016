@@ -11,6 +11,9 @@ if(isset($_SESSION['pwd']) && isset($_SESSION['pwd'])){
     
     <button onclick="self.location.href='?p=promos.add'">Ajouter une classe</button>
 
+    </br></br>
+
+
     <table>
         <thead>
             <tr>

@@ -16,7 +16,7 @@ else { $id = null; }
 
     <button onclick="self.location.href='?p=carte.add'">Ajouter une carte</button>
 
-</br>
+</br></br>
 
 
     <form method='GET' action="">

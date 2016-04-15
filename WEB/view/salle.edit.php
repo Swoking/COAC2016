@@ -17,7 +17,7 @@ if (isset($_POST['id'])) $id = $_POST['id'];
 
         Salle::edit($id, $_POST['name']);
 
-        Log::promos_edit($salle->Nom, $_POST['name']);
+        Log::salle_edit($salle->Nom, $_POST['name']);
     }
 
     $salle = Salle::getFromId($id)->fetch();

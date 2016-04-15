@@ -31,7 +31,7 @@ foreach( Carte::getFromIdCarte($id_Carte) as $data ) {
         $prenom = $eleve->Prenom;
         $nom = $eleve->Nom;
         
-        Log::carte_statut($id, $data->Num_Carte, $prenom, $nom);
+        Log::carte_statut($data->Num_Carte, $prenom, $nom);
         break;
     }
 }

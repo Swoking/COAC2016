@@ -17,13 +17,19 @@ if ( !empty($_POST) ) {
     $test_carte = Carte::add($id->id, $_POST['num_carte'], $_POST['etat']); 
 
     Log::eleve_add($_POST['nom'], $_POST['prenom']);
+?>
+<center>
+<?php
 
-if($test_eleve == true){ ?> Ajout de l'élève réussi <?php }
-else{ ?> L'ajout de l'élève a échoué <?php }
+if($test_eleve == true){ ?> Ajout de l'élève réussi </br> <?php }
+else{ ?> L'ajout de l'élève a échoué </br> <?php }
 
 if($test_carte == true){ ?> Ajout de la carte réussi <?php }
-else{ ?> L'ajout de la carte a échoué <?php }
+else{ ?> L'ajout de la carte a échoué  <?php }
 
+?>
+</center>
+<?php
 }
 
 ?>

@@ -14,6 +14,10 @@ else { $id = null; }
 
     <h1>&mdash; Liste des élèves &mdash;</h1>
 
+    <button onclick="self.location.href='?p=eleve.add'">Ajouter un élève</button>
+
+</br></br>
+
 
     <form method='GET' action="">
         <input type="hidden" name="p" value="eleve.list">

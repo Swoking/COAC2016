@@ -26,12 +26,6 @@ class Lycee
         return $db->query("SELECT * FROM Lycee WHERE id = ?", [$id]);
     }
 
-
-    public static function delete($id){
-        $db = new \Coac\Database();
-        $db->query("DELETE FROM Lycee WHERE id = ?", [$id]);
-    }
-
     public static function add($lycee){
         $db = new \Coac\Database();
         $db->query( "INSERT INTO Lycee (`id`, `Lycee`) 
